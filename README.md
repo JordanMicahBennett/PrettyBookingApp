@@ -14,7 +14,7 @@ a. System side (super user)
 
 b. Driver side (cannot book appointment, can view associated students/relevant appointments to drivers)
 
-c. Student side(can book appointment)
+c. Student side (can book appointment)
 
 d. Principal side (similar to admin, can book appointments, add users and a lot more, but can't delete users)
 
@@ -31,7 +31,7 @@ with an upper coloured portion with huge title, and a lowe portion with fields a
 
 # RUNNING THE APP (OFFLINE)
 
-You'll have to ensure that all php files in data/phps/" are updated with the appropriate connection details for your oline server.
+You'll have to ensure that all php files in "data/phps/" are updated with the appropriate connection details for your oline server.
 
 
 AUTHOR PORTFOLIO
