@@ -1,4 +1,4 @@
-![Alt text]( https://github.com/JordanMicahBennett/Grapple/blob/master/data/miscellaneous/Screens/image_icon.png "default page")
+![Alt text]( https://bitbucket.org/JordanMicahBennett/bookingapp/src/21513956b8f2add30ad7f2f5ad9300d08521cbb6/data/miscallaneous/screenshot-0.png? "default page")
 
 
 # DESCRIPTION
@@ -35,13 +35,14 @@ A driver user (username: howardlewis@jaa.com, password: Jaadriving@1)
 
 ## USER MANUAL
 
-See the "Admin Manual" section for details.
+See the "[Admin Manual](https://bitbucket.org/JordanMicahBennett/bookingapp/src/21513956b8f2add30ad7f2f5ad9300d08521cbb6/Admin%20%20Manual.pdf)" section for details.
 
 ## DESIGN DISCUSSION
 
 The design features a layout I call the "calendar look and feel" where all content sections (the areas you see when you click tabs) are shaped like calendars;
 with an upper coloured portion with huge title, and a lower portion with fields and or other user input controls etc.
 
+![Alt text]( https://bitbucket.org/JordanMicahBennett/bookingapp/src/21513956b8f2add30ad7f2f5ad9300d08521cbb6/data/miscallaneous/screenshot-1.png? "default page")
 
 # RUNNING THE APP (OFFLINE)
 
