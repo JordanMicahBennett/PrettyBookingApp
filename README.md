@@ -20,12 +20,16 @@ d. Principal side (similar to admin, can book appointments, add users and a lot 
 
 Booking app is live at [bookjaa.rf.gd](https://bookjaa.rf.gd/). (Note this is on a free server!)
 
-Valid Logins:
+# RUNNING THE APP/Valid Logins:
 
 An admin user (username: admin@jaa.com, password: admin)
+
 A system user (username: jordanbennett@jaa.com, password: modern2017)
+
 A principal user (username: kamilahanderson@jaa.com, password: Jaadriving@1)
+
 A student user (username: uchiha@gmail.com, password: konoha)
+
 A driver user (username: howardlewis@jaa.com, password: Jaadriving@1)
 
 
