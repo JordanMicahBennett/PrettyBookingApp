@@ -1,4 +1,4 @@
-![picture]( https://bitbucket.org/JordanMicahBennett/bookingapp/src/21513956b8f2add30ad7f2f5ad9300d08521cbb6/data/miscallaneous/screenshot-0.png)
+![alt text]( https://bitbucket.org/JordanMicahBennett/bookingapp/src/21513956b8f2add30ad7f2f5ad9300d08521cbb6/data/miscallaneous/screenshot-0.png)
 
 
 # DESCRIPTION
@@ -42,7 +42,7 @@ See the "[Admin Manual](https://bitbucket.org/JordanMicahBennett/bookingapp/src/
 The design features a layout I call the "calendar look and feel" where all content sections (the areas you see when you click tabs) are shaped like calendars;
 with an upper coloured portion with huge title, and a lower portion with fields and or other user input controls etc.
 
-![picture]( https://bitbucket.org/JordanMicahBennett/bookingapp/src/21513956b8f2add30ad7f2f5ad9300d08521cbb6/data/miscallaneous/screenshot-1.png)
+![alt text]( https://bitbucket.org/JordanMicahBennett/bookingapp/src/21513956b8f2add30ad7f2f5ad9300d08521cbb6/data/miscallaneous/screenshot-1.png)
 
 # RUNNING THE APP (OFFLINE)
 
