@@ -1,0 +1,7 @@
+tailor schedule to drivers
+Give admins + principal all driver schedules
+
+ENSURE TABLE REFLECT TO DIFFERENT DAYS OF MONTH; if add monday on a particular day, then change day, monday would no longer be marked as taken simply because i switched days.
+
+Send selected driver to db, and block student from choosing new driver
+

@@ -1,0 +1,115 @@
+<!-- Author: Jordan Micah Bennett, BookJaa V2 2017 -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-9">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel="shortcut icon" type="image/png" href="data/images/logo.png"/>
+
+    <title>BookJaa Join</title>
+
+    <link href="data/css/metro_6.css" rel="stylesheet">
+    <link href="data/css/metro-icons.css" rel="stylesheet">
+    <link href="data/css/metro-responsive.css" rel="stylesheet">
+
+    <script src="data/js/jquery-2.1.3.min.js"></script>
+    <script src="data/js/metro_4.js"></script>
+	<script src="data/js/core_validation_4.js"></script>
+
+    <style>
+        .login-form {
+            width: 25rem;
+            height: 30.95rem;
+            position: fixed;
+            top: 50%;
+            margin-top: -9.375rem;
+            left: 50%;
+            margin-left: -12.5rem;
+            background-color: #ffffff;
+            opacity: 0;
+            -webkit-transform: scale(.9);
+            transform: scale(.9);
+        }
+    </style>
+
+    <script>
+
+        /*
+        * Do not use this is a google analytics fro Metro UI CSS
+        * */
+
+        $(function(){
+            var form = $(".login-form");
+
+            form.css({
+                opacity: 1,
+                "-webkit-transform": "scale(1)",
+                "transform": "scale(1)",
+                "-webkit-transition": ".5s",
+                "transition": ".5s"
+            });
+        });
+    </script>
+</head>
+<body class="bg-darkTeal">
+    <div class="login-form padding20 block-shadow">
+        <form>
+            <h1 class="text-light">BookJaa Sign up</h1>
+            <hr class="thin"/>
+            <br />
+            <div class="input-control text full-size" data-role="input">
+                <label for="StudentName">Student name:</label>
+                <input type="text" name="StudentName" id="StudentName">
+                <button class="button helper-button clear"><span class="mif-cross"></span></button>
+            </div>
+			
+            <br />
+            <br />
+            <div class="input-control text full-size" data-role="input">
+                <label for="StudentEmail">Student email:</label>
+                <input type="text" name="StudentEmail" id="StudentEmail">
+                <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+            </div>
+			
+			
+            <br />
+            <br />
+            <div class="input-control text full-size" data-role="input">
+                <label for="StudentPhone">Student phone:</label>
+                <input type="text" name="StudentPhone" id="StudentPhone">
+                <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+            </div>
+				
+            <br />
+            <br />
+            <div class="input-control password full-size" data-role="input">
+                <label for="StudentPassword">Student password:</label>
+                <input type="password" name="StudentPassword" id="StudentPassword">
+                <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+            </div>
+			
+            <br />
+            <br />
+            <div class="input-control password full-size" data-role="input">
+                <label for="StudentRepeatPassword">Repeat your password:</label>
+                <input type="password" name="StudentRepeatPassword" id="StudentRepeatPassword">
+                <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+            </div>
+
+			
+            <br />
+            <br />
+            <div class="form-actions">
+                <button  class="button primary" id = "JoinBtn">Join</button>
+                <button type="button" class="button link" id = "SignUpReturn"> return </button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,104 @@
+body {
+	background: #ccc;
+	font: 87.5%/1.5em 'Lato', sans-serif;
+	margin: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td {
+	padding: 0;
+}
+
+.container {
+	height: 600px;
+	left: 50%;
+	margin: -300px 0 0 -28%;
+	position: absolute;
+	top: 60%;
+	width: 600px;
+}
+
+.calendar-container {
+	position: relative;
+	width: 520px;
+}
+
+.calendar-container header {
+	background: #ffe200;
+	color: #fff;
+	padding: 3em 2em;
+	width: 520px;
+	/* border-radius: 1em 1em 0 0;*/
+}
+
+.calendar_day {
+	font-size: 8em;
+	font-weight: 900;
+	line-height: 1em;
+}
+
+.label
+{
+	color: #f1d90c;
+}
+
+.calendar_month {
+	font-size: 4em;
+	line-height: 1em;
+	text-transform: lowercase;
+}
+
+.calendar {
+	/* border-radius: 0 0 1em 1em; */
+	background: #fff;
+	-webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+	box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+	color: #555;
+	width: 520px;
+	display: inline-block;
+}
+
+.calendar_non_metro {
+	padding-left: 38px;
+}
+
+.isOccupied
+{
+	color: #f3e9a2;
+}
+.isNotOccupied
+{
+	color: #555;
+}
+
+.calendar thead {
+	color: #e66b6b;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.calendar td {
+	padding: .5em 1em;
+	text-align: center;
+	cursor: pointer;
+}
+
+.calendar tbody td:hover {
+	background: #cacaca;
+	color: #fff;
+}
+
+.current-day {
+	color: #e66b6b;
+}
+
+.prev-month,
+.next-month {
+	color: #cacaca;
+}
+
+

@@ -1,0 +1,56 @@
+.notification-button {
+  line-height: 3.125rem;
+  padding: 0 .625rem;
+  font-size: 1rem;
+  cursor: pointer;
+  color: inherit;
+  display: block;
+  float: left;
+  position: relative;
+  vertical-align: middle;
+  height: 3.125rem;
+  background-color: inherit;
+  border:none;
+}
+.notification-button.default {
+  color: #fff;
+}
+.notification-button:hover {
+	background-color: #f1edd0;
+}
+.notification-button:active {
+  background-color: #f1edd0;
+}
+.notification-button:focus {
+  outline: 0;
+}
+.notification-button:disabled,
+.notification-button.disabled {
+  background-color: #f1edd0;
+  cursor: default;
+}
+
+.notification_container
+{
+	overflow-y: scroll;
+}
+
+.notification_list:hover {
+  background-color: white;
+  color: black;
+  border:none;
+}
+
+
+#NotificationNumber 
+{
+	font-size: .6em;
+	color: #3a3737;
+}
+
+.notification-list {
+	width: 1200px;
+	height: 370px;
+	overflow-y: scroll;
+	display: inline-block;
+}

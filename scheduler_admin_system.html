@@ -1,0 +1,977 @@
+<!-- Author: Jordan Micah Bennett, BookJaa V2 2017 -->
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name=viewport content='width=700' />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="Metro, a sleek, intuitive, and powerful framework for faster and easier web development for Windows Metro Style.">
+    <meta name="keywords" content="HTML, CSS, JS, JavaScript, framework, metro, front-end, frontend, web development">
+    <meta name="author" content="Sergey Pimenov and Metro UI CSS contributors">
+
+    <link rel="shortcut icon" type="image/png" href="data/images/favicon.png"/>
+
+    <title>BookJaa Admin</title>
+
+    <link href="data/css/metro_6.css" rel="stylesheet">
+    <link href="data/css/metro-icons.css" rel="stylesheet">
+    <link href="data/css/metro-responsive.css" rel="stylesheet">
+
+    <script src="data/js/jquery-2.1.3.min.js"></script>
+    <script src="data/js/jquery.dataTables.min.js"></script>
+    <script src="data/js/metro_4.js"></script>
+	<script src="data/js/select2.min.js"></script>
+	<script src="data/js/moment_1.js"></script>
+	<script src="data/js/core.js"></script>
+	<script src="data/js/core_admin_system_6.js"></script>
+	<script src="data/js/core_admin_schedule_control_6.js"></script>
+	<script src="data/js/core_admin_notification_control_3.js"></script>
+	<script src="data/js/core_admin_system_restriction_control.js"></script>
+	<link rel="stylesheet" href="data/css/admin-list_4.css">
+	<link rel="stylesheet" href="data/css/student-list_5.css">
+	<link rel="stylesheet" href="data/css/pickup-list_3.css">
+	<link rel="stylesheet" href="data/css/dropoff-list.css">
+	<link rel="stylesheet" href="data/css/admin-adder_1.css">
+	<link rel="stylesheet" href="data/css/notification_5.css">
+	<link rel="stylesheet" href="data/css/slot-viewer_2.css">
+	<link rel="stylesheet" href="data/css/pickup-adder.css">
+	<link rel="stylesheet" href="data/css/dropoff-adder.css">
+	<link rel="stylesheet" href="data/css/student-adder.css">
+	<link rel="stylesheet" href="data/css/calendar_6.css">	
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+        }
+        .page-content {
+            padding-top: 3.125rem;
+            min-height: 100%;
+            height: 3000px;
+        }
+        .table .input-control.checkbox {
+            line-height: 1;
+            min-height: 0;
+            height: auto;
+        }
+
+        @media screen and (max-width: 800px){
+            #cell-sidebar {
+                flex-basis: 52px;
+            }
+            #cell-content {
+                flex-basis: calc(100% - 52px);
+            }
+        }
+    </style>
+
+    <script>
+        function pushMessage(t){
+            var mes = 'Info|Implement independently';
+            $.Notify({
+                caption: mes.split("|")[0],
+                content: mes.split("|")[1],
+                type: t
+            });
+        }
+
+        $(function(){
+            $('.sidebar').on('click', 'li', function(){
+                if (!$(this).hasClass('active')) {
+                    $('.sidebar li').removeClass('active');
+                    $(this).addClass('active');
+                }
+            })
+        })
+    </script>
+</head>
+<body class="bg-steel">
+    <div class="app-bar fixed-top darcula" data-role="appbar">
+        <a class="app-bar-element branding">BookJaa</a>
+        <span class="app-bar-divider"></span>
+        <ul class="app-bar-menu">
+           <button class="notification-button" id = "NotificationBtn"><span class="mif-bell mif-ani-ring mif-ani-slow icon"></span> <span id = "NotificationNumber"> </span></button>
+        </ul>
+
+        <div class="app-bar-element place-right">
+            <span class="dropdown-toggle"><span class="mif-cog"></span> Account</span>
+            <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow fg-dark" data-role="dropdown" data-no-close="true" style="width: 220px">
+                <h2 class="text-light">Quick settings</h2>
+                <ul class="unstyled-list fg-dark">
+                    <li><a href="" class="fg-white1 fg-hover-yellow" id = 'ProfileNameTag'> </a></li>
+                    <li><a href="" class="fg-white2 fg-hover-yellow">Security</a></li>
+                    <li><a href="index.html" class="fg-white3 fg-hover-yellow">Exit</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+	
+    <div class="page-content">
+        <div class="flex-grid no-responsive-future" style="height: 100%;">
+            <div class="row" style="height: 100%">
+                <div class="cell size-x200" id="cell-sidebar" style="background-color: #ffe200; height: 100%">
+                    <ul class="sidebar">
+                        <li class="active" id = "ScheduleContentToggler"><a href="#">
+                            <span class="mif-calendar icon"></span>
+                            <span class="title">Schedule</span>
+                            <span class="counter"></span>
+                        </a></li>
+                        <li id = "AdminsContentToggler"><a href="#">
+                            <span class="mif-users icon"></span>
+                            <span class="title">Admins</span>
+                            <span class="counter" id = "AdminCounterLabel"></span>
+                        </a></li>	
+                        <li id = "AdditionContentToggler"><a href="#">
+                            <span class="mif-user-plus icon"></span>
+                            <span class="title">Admin Adder</span>
+                        </a></li>	
+                        <li  id = "StudentContentToggler"><a href="#">
+                            <span class="mif-users icon"></span>
+                            <span class="title">Students</span>
+                            <span class="counter" id = "StudentCounterLabel"></span>
+                        </a></li>
+                        <li id = "StudentAdditionContentToggler"><a href="#">
+                            <span class="mif-user-plus icon"></span>
+                            <span class="title">Student Adder</span>
+                        </a></li>							
+                        <li  id = "PickupContentToggler"><a href="#">
+                             <span class="mif-location icon"></span>
+                            <span class="title">Pickup Locations</span>
+                            <span class="counter" id = "PickupCounterLabel"></span>
+                        </a></li>
+                        <li  id = "PickupAdditionContentToggler"><a href="#">
+                             <span class="mif-location icon"></span>
+                            <span class="title">Pickup Location Adder</span>
+                        </a></li>
+                        <li  id = "DropOffContentToggler"><a href="#">
+                             <span class="mif-location icon"></span>
+                            <span class="title">Drop-off Locations</span>
+                            <span class="counter" id = "DropOffCounterLabel"></span>
+                        </a></li>
+                        <li  id = "DropOffAdditionContentToggler"><a href="#">
+                             <span class="mif-location icon"></span>
+                            <span class="title">Drop-off Location Adder</span>
+                        </a></li>
+                    </ul>
+                </div>
+				<div class="container" id = "AdminListContent">
+					<div class="admin-list-container">
+						<header>
+							<div class="header_label">Admin</div>
+							<div class="header_subtitle_label">listing</div>
+						</header>
+						 
+						<table class="admin-list">
+							<thead>
+								<tr>	
+									<td class = "label columnHeader">Name</td>
+									<td class = "label columnHeader">Email</td>
+									<td class = "label columnHeader">Level</td>
+									<td class = "label columnHeader">View Extra</td>
+									<td class = "label columnHeader">Restrictions</td>
+									<td class = "label columnHeader"></td>
+								</tr>
+							</thead>
+							<tbody id = "AdminList">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="container" id = "AdminAdderContent">
+					<div class="admin-adder-container">
+						<header>
+							<div class="header_label">Admin</div>
+							<div class="header_subtitle_label">adder</div>
+						</header>
+						
+						<table class="admin-adder">
+							<thead>
+							</thead>
+							<tbody>
+								</br> 
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="UserEmail">Email</label>
+											<input type="text" name="UserEmail" id="UserEmail" value = "">
+											<button class="button helper-button reveal"><span class="mif-looks"></span></button>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="UserName">Name</label>
+											<input type="text" name="UserName" id="UserName" value = "">
+											<button class="button helper-button reveal"><span class="mif-looks"></span></button>
+										</div>
+									</td>
+								</tr>	
+								
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="UserPassword">Password</label>
+											<input type="password" name="UserPassword" id="UserPassword" value = "">
+											<button class="button helper-button reveal"><span class="mif-looks"></span></button>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="UserLevel">Level</label>
+											<select class="js-select full-size" id = "UserLevel">
+											</select>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="License">License</label>
+											<select class="js-select full-size" id = "License">
+											</select>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class = "label">
+										<button  class="button primary" id = "AdminAdditionBtn">Go</button>
+									</td>
+								</tr>
+								 
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<div class="container" id = "StudentAdderContent">
+					<div class="student-adder-container">
+						<header>
+							<div class="header_label">Student</div>
+							<div class="header_subtitle_label">adder</div>
+						</header>
+						
+						<table class="student-adder">
+							<thead>
+							</thead>
+							<tbody>
+								</br> 
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="StudentName">Name</label>
+											<input type="text" name="StudentName" id="StudentName" value = "">
+											<button class="button helper-button reveal"><span class="mif-looks"></span></button>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="StudentEmail">Email</label>
+											<input type="text" name="StudentEmail" id="StudentEmail" value = "">
+											<button class="button helper-button reveal"><span class="mif-looks"></span></button>
+										</div>
+									</td>
+								</tr>	
+								
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="StudentInstructor">Instructor Email</label>
+											<input type="text" name="StudentInstructor" id="StudentInstructor" value = "">
+											<button class="button helper-button reveal"><span class="mif-looks"></span></button>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="StudentPhone">Phone</label>
+											<input type="text" name="StudentPhone" id="StudentPhone" value = "">
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="StudentTrn">Trn</label>
+											<input type="text" name="StudentTrn" id="StudentTrn" value = "">
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="StudentPickup">Pickup</label>
+											<select class="js-select full-size" id = "StudentPickup" value = "">
+											</select>
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="StudentPickup_Comment">Pickup Comment</label>
+											<input class="js-select full-size" id = "StudentPickup_Comment"></input>
+										</div>
+									</td>
+								</tr>
+
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="StudentDropOff">Drop Off</label>
+											<select type="text" name="StudentDropOff" id="StudentDropOff" value = "">
+											</select>
+										</div>
+									</td>
+								</tr>	
+
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="StudentDropOff_Comment">Drop Off Comment</label>
+											<input class="js-select full-size" id = "StudentDropOff_Comment">
+											</input>
+										</div>
+									</td>
+								</tr>								
+								
+								<tr>
+									<td class = "label">
+										<button  class="button primary" id = "StudentAdditionBtn">Go</button>
+									</td>
+								</tr>
+								 
+							</tbody>
+						</table>
+					</div>
+				</div>	
+				
+				<div class="container" id = "StudentContent">
+					<div class="student-list-container">
+						<header>
+							<div class="header_label">Student</div>
+							<div class="header_subtitle_label">listing</div>
+						</header>
+						
+						<table class="student-list">
+							<thead>
+								<tr>	
+									<td class = "label columnHeader">Student Name</td>
+									<td class = "label columnHeader">Student Email</td>
+									<td class = "label columnHeader">Student Phone</td>
+									<td class = "label columnHeader">Admin Email</td>
+									<td class = "label columnHeader"></td>
+								</tr>
+							</thead>
+							<tbody id = "StudentList">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="container" id = "PickupContent">
+					<div class="pickup-list-container">
+						<header>
+							<div class="header_label">Pickup</div>
+							<div class="header_subtitle_label">listing</div>
+						</header>
+						
+						<table class="pickup-list">
+							<thead>
+								<tr>	
+									<td class = "label columnHeader">Location</td>
+									<td class = "label columnHeader"></td>
+								</tr>
+							</thead>
+							<tbody id = "PickupList">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<div class="container" id = "PickupAdderContent">
+					<div class="pickup-adder-container">
+						<header>
+							<div class="header_label">Pickup</div>
+							<div class="header_subtitle_label">adder</div>
+						</header>
+						
+						<table class="pickup-adder">
+							<thead>
+							</thead>
+							<tbody>
+								</br> 
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="ItemName">Location</label>
+											<input type="text" name="ItemName" id="ItemName" value = "">
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class = "label">
+										<button  class="button primary" id = "PickupAdditionBtn">Go</button>
+									</td>
+								</tr>
+								 
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="container" id = "DropOffContent">
+					<div class="dropoff-list-container">
+						<header>
+							<div class="header_label">DropOff</div>
+							<div class="header_subtitle_label">listing</div>
+						</header>
+						
+						<table class="dropoff-list">
+							<thead>
+								<tr>	
+									<td class = "label columnHeader">Location</td>
+									<td class = "label columnHeader"></td>
+								</tr>
+							</thead>
+							<tbody id = "DropOffList">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				<div class="container" id = "DropOffAdderContent">
+					<div class="dropoff-adder-container">
+						<header>
+							<div class="header_label">DropOff</div>
+							<div class="header_subtitle_label">adder</div>
+						</header>
+						
+						<table class="dropoff-adder">
+							<thead>
+							</thead>
+							<tbody>
+								</br> 
+								<tr>
+									<td class = "label">
+										<div class="input-control text full-size" data-role="input">
+											<label for="ItemName">Location</label>
+											<input type="text" name="ItemName" id="ItemName_DropOff" value = "">
+										</div>
+									</td>
+								</tr>
+								
+								<tr>
+									<td class = "label">
+										<button  class="button primary" id = "DropOffAdditionBtn">Go</button>
+									</td>
+								</tr>
+								 
+							</tbody>
+						</table>
+					</div>
+				</div>
+				
+				
+				
+				<div class="container" id = "ScheduleContentPage1">
+					<button class="button datepicker"><span class="mif-pencil"></span></button>
+					<button class="button DriverPicker"><span class="mif-wrench mif-ani-spanner mif-ani-slow"></span></button>
+					<button class="button GuideToggler"><span class="mif-notification"></span></button>
+					<div class="calendar-container">
+						<header>
+							<div class="calendar_day">18</div>
+							<div class="calendar_month">August</div>
+						</header>
+						
+						<table class="calendar">
+							<thead>
+								<tr>	
+									<td class = "label"><span class="mif-alarm icon"></span></td>
+									<td class = "label sun day_header">Sun</td>
+									<td class = "label mon day_header">Mon</td>
+									<td class = "label tue day_header">Tue</td>
+									<td class = "label wed day_header">Wed</td>
+									<td class = "label thu day_header">Thu</td>
+									<td class = "label fri day_header">Fri</td>
+									<td class = "label sat day_header">Sat</td>
+								</tr>
+							</thead>
+
+							<tbody>
+								
+								<tr>
+									<td class = "label"><strong> 7:30 am</strong></td>
+									<td id = "sun_7_30am"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_7_30am"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_7_30am"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_7_30am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_7_30am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_7_30am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_7_30am"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>            
+                                                 
+								<tr>             
+									<td class = "label"> <strong> 8:40 am </strong> </td>
+									<td id = "sun_8_40am"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_8_40am"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_8_40am"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_8_40am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_8_40am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_8_40am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_8_40am"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>            
+                                                 
+								<tr>             
+									<td class = "label"> <strong> 9:50 am </strong> </td>
+									<td id = "sun_9_50am"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_9_50am"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_9_50am"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_9_50am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_9_50am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_9_50am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_9_50am"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>            
+
+								<tr>             
+									<td class = "label"> <strong> 11:00 am </strong> </td>
+									<td id = "sun_11_00am"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_11_00am"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_11_00am"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_11_00am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_11_00am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_11_00am"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_11_00am"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>            
+								                 
+								<tr>             
+									<td class = "label"> <strong> 12:10 pm </strong> </td>
+									<td id = "sun_12_10pm"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_12_10pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_12_10pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_12_10pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_12_10pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_12_10pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_12_10pm"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>            
+							</tbody>
+						</table>
+					</div>
+					
+					<div class="toolbar">
+						<div class="toolbar-section" data-role="group" data-group-type="one-state">
+							<button class="toolbar-button ScheduleContentPage1Toggler">1</button>
+							<button class="toolbar-button ScheduleContentPage2Toggler">2</button>
+							<button class="toolbar-button" disabled>3</button>
+						</div>
+					</div>
+				</div>
+				
+				<div class="container" id = "ScheduleContentPage2">
+					<button class="button datepicker"><span class="mif-pencil"></span></button>
+					<button class="button DriverPicker"><span class="mif-wrench mif-ani-spanner mif-ani-slow"></span></button>
+					<button class="button GuideToggler"><span class="mif-notification"></span></button>
+					<div class="calendar-container">
+						<header>
+							<div class="calendar_day">18</div>
+							<div class="calendar_month">August</div>
+						</header>
+						
+						<table class="calendar">
+							<thead>
+								<tr>	
+									<td class = "label"><span class="mif-alarm icon"></span></td>
+									<td class = "label sun day_header">Sun</td>
+									<td class = "label mon day_header">Mon</td>
+									<td class = "label tue day_header">Tue</td>
+									<td class = "label wed day_header">Wed</td>
+									<td class = "label thu day_header">Thu</td>
+									<td class = "label fri day_header">Fri</td>
+									<td class = "label sat day_header">Sat</td>
+								</tr>                      
+							</thead>
+
+							<tbody>
+								<tr>
+									<td class = "label"> <strong> 1:20 pm </strong> </td>
+									<td id = "sun_1_20pm"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_1_20pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_1_20pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_1_20pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_1_20pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_1_20pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_1_20pm"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>            
+                                                 
+								<tr>             
+									<td class = "label"> <strong> 2:30 pm </strong> </td>
+									<td id = "sun_2_30pm"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_2_30pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_2_30pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_2_30pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_2_30pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_2_30pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_2_30pm"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>            
+                                                 
+								<tr>             
+									<td class = "label"> <strong> 3:40 pm </strong> </td>
+									<td id = "sun_3_40pm"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_3_40pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_3_40pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_3_40pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_3_40pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_3_40pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_3_40pm"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>            
+								                 
+								<tr>             
+									<td class = "label"> <strong> 4:50 pm </strong> </td>
+									<td id = "sun_4_50pm"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_4_50pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_4_50pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_4_50pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_4_50pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_4_50pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_4_50pm"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>
+							
+								<tr>             
+									<td class = "label"> <strong> 5:00 pm </strong> </td>
+									<td id = "sun_5_00pm" class = "sun 5_00pm"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_5_00pm" class = "mon 5_00pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_5_00pm" class = "tue 5_00pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_5_00pm" class = "wed 5_00pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_5_00pm" class = "thu 5_00pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_5_00pm" class = "fri 5_00pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_5_00pm" class = "sat 5_00pm"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>            
+								                 
+								<tr>             
+									<td class = "label"> <strong> 6:10 pm </strong> </td>
+									<td id = "sun_6_10pm" class = "sun 6_10pm"> <span class="mif-paper-plane icon"></span></td> 
+									<td id = "mon_6_10pm" class = "mon 6_10pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "tue_6_10pm" class = "tue 6_10pm"><span class="mif-paper-plane icon"></span></td> 
+									<td id = "wed_6_10pm" class = "wed 6_10pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "thu_6_10pm" class = "thu 6_10pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "fri_6_10pm" class = "fri 6_10pm"><span class="mif-paper-plane icon"></span></td>
+									<td id = "sat_6_10pm" class = "sat 6_10pm"> <span class="mif-paper-plane icon"></span></td> 
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="toolbar">
+						<div class="toolbar-section" data-role="group" data-group-type="one-state">
+							<button class="toolbar-button ScheduleContentPage1Toggler">1</button>
+							<button class="toolbar-button ScheduleContentPage2Toggler">2</button>
+							<button class="toolbar-button" disabled>3</button>
+						</div>
+					</div>
+				</div>
+		
+		<!-- Relevant dialogs (not displayed until some button is clicked somewhere) -->
+        <div data-role="dialog" id="addition_success_dialog" class="padding20" data-close-button="true" data-type="success">
+            <h1>Success!</h1>
+            <p>
+                <span id ='AdminAdditionNameLabel'> </span> was successfully added to the database!
+            </p>
+        </div>
+		
+        <div data-role="dialog" id="pickup_addition_success_dialog" class="padding20" data-close-button="true" data-type="success">
+            <h1>Success!</h1>
+            <p>
+                <span id ='PickupAdditionNameLabel'> </span> was successfully added to the database!
+            </p>
+        </div>
+		
+        <div data-role="dialog" id="pickup_deletion_success_dialog" class="padding20" data-close-button="true" data-type="info">
+            <h1>Pickup Location Deletion</h1>
+            <p>
+                Pickup location was successfully deleted.
+            </p>
+        </div>
+
+        <div data-role="dialog" id="dropoff_addition_success_dialog" class="padding20" data-close-button="true" data-type="success">
+            <h1>Success!</h1>
+            <p>
+                <span id ='DropOffAdditionNameLabel'> </span> was successfully added to the database!
+            </p>
+        </div>
+		
+        <div data-role="dialog" id="dropoff_deletion_success_dialog" class="padding20" data-close-button="true" data-type="info">
+            <h1>Drop-off Location Deletion</h1>
+            <p>
+                Drop off location was successfully deleted.
+            </p>		
+		</div>
+		
+        <div data-role="dialog" id="admin_guide" class="padding20" data-close-button="true" data-type="info">
+            <h1> <span class ='AdminNameLabel'> </span>'s Booking Guide  </h1>
+            <p>
+                </br> </br> <span class="mif-pin icon"> </span> You may book by clicking the black paper plane <span class="mif-paper-plane icon isNotOccupied"> </span> icon in the time schedule.
+				
+				</br> </br> <span class="mif-pin icon"> </span> Black paper planes <span class="mif-paper-plane icon isNotOccupied"> </span> in schedule are unbooked items, </br> while yellow paper plane <span class="mif-paper-plane icon isOccupied"> </span> items represent those that have already been  booked. 
+				
+				</br> </br> <span class="mif-pin icon"> </span> You may filter the table by dates, using the black pencil <span class="mif-pencil icon isNotOccupied"> </span> icon atop time schedule, </br> to see booked times across different months, and different days.
+         
+				</br> </br> <span class="mif-pin icon"> </span> You may also filter the table by driver schedule, using the black animated wrench <span class="mif-wrench mif-ani-spanner mif-ani-slow isNotOccupied"> </span> icon atop time schedule, </br> to see availabilities based on driver.
+            </p>
+        </div>
+		
+        <div data-role="dialog" id="admin_book_success_dialog" class="padding20" data-close-button="true" data-type="success">
+            <h1>Booking Success! </h1>
+            <p>
+                <span class ='AdminNameLabel'> </span>, we are happy to announce that your booking was successful!
+            </p>
+        </div>
+		
+ 
+		
+        <div data-role="dialog" id="admin_book_error_dialog" class="padding20" data-close-button="true" data-type="alert">
+            <h1>Booking Error! </h1>
+            <p>
+                <span class ='AdminNameLabel'> </span>, we are sorry to report that this time and day has been booked. Booked times are indicated by yellow plane <span class="mif-paper-plane icon isOccupied"> </span> icons.
+            </p>
+        </div>	
+		
+		<div data-role="dialog" id="admin_notification_dialog" class="padding20" data-close-button="true" data-background="#3a3737" data-color="fg-white">
+            <h1>BookJaa Notifications Viewer </h1>
+			<div>
+				<table class="notification-list">
+					<thead>
+						<tr>	
+							<td class = "slot-viewer-table-header label columnHeader"> Driver Email </td>
+							<td class = "slot-viewer-table-header label columnHeader"> Student Email  </td>
+							<td class = "slot-viewer-table-header label columnHeader"> Week Day</td>
+							<td class = "slot-viewer-table-header label columnHeader"> Month Day</td>
+							<td class = "slot-viewer-table-header label columnHeader"> Month </td>
+							<td class = "slot-viewer-table-header label columnHeader"> Time </td>
+							<td class = "slot-viewer-table-header label columnHeader"> Pickup Location </td>
+						</tr>
+					</thead>
+					
+				
+					<tbody id = "NotificationList">
+					</tbody>
+				</table>
+			</div>
+			
+			<br> </br> <br> </br>
+        </div>	
+		
+		<div data-role="dialog" id="admin_extra_data_dialog" class="padding20" data-close-button="true" data-background="#3a3737" data-color="fg-white">
+            <h1> BookJaa Extra Info Viewer <span id="ExtraInfoLabel"></span></h1>
+			
+			<br></br>
+			<div>
+				<table class = "AdminList_ExtraDataList_Table">
+					<thead>
+						<tr>	
+							<td class = "slot-viewer-table-header label columnHeader"> Student Name </td>
+							<td class = "slot-viewer-table-header label columnHeader"> Time </td>
+							<td class = "slot-viewer-table-header label columnHeader"> Week Day</td>
+							<td class = "slot-viewer-table-header label columnHeader"> Month Day</td>
+							<td class = "slot-viewer-table-header label columnHeader"> Month </td>
+							<td class = "slot-viewer-table-header label columnHeader"> Student Email </td>
+						</tr>
+					</thead>
+					
+				
+					<tbody id = "AdminList_ExtraDataList">
+					</tbody>
+				</table>
+			</div>
+			
+			<br> </br> <br> </br>
+        </div>	
+		
+		<div data-role="dialog" id="admin_restriction_data_dialog" class="padding20" data-close-button="true" data-background="#3a3737" data-color="fg-white">
+            <h1> BookJaa Restriction Editor/Viewer <span id="RestrictionInfoLabel"></span></h1>
+			
+			<br></br>
+			<div>
+                    <div class="cell">
+                        <div class="accordion" data-role="accordion">
+                            <div class="frame">
+                                <div class="heading">Day of week restrictions</div>
+                                <div class="content">
+									<h5>
+										This enables user to disable days (of week) on a driver's schedule. <br></br>
+										As a result, this change will cause days set to be unavailable on the driver's ui schedule.
+									</h5>
+									
+									<p> Sunday  
+										<label class="switch-original">
+											<input id = "day_of_week_restrictor_sun" type="checkbox">
+											<span class="check"></span>
+										</label> 
+									</p>			
+									
+									<p> Monday  
+										<label class="switch-original">
+											<input id = "day_of_week_restrictor_mon" type="checkbox">
+											<span class="check"></span>
+										</label> 
+									</p>
+									
+									<p> Tuesday 
+										<label class="switch-original">
+											<input id = "day_of_week_restrictor_tue" type="checkbox">
+											<span class="check"></span>
+										</label>
+									</p>
+									
+									<p> Wednesday 
+										<label class="switch-original">
+											<input id = "day_of_week_restrictor_wed" type="checkbox">
+											<span class="check"></span>
+										</label>
+									</p>
+									
+									<p> Thursday 
+										<label class="switch-original">
+											<input id = "day_of_week_restrictor_thu" type="checkbox">
+											<span class="check"></span>
+										</label>
+									</p>
+									
+									<p> Friday 
+										<label class="switch-original">
+											<input id = "day_of_week_restrictor_fri" type="checkbox">
+											<span class="check"></span>
+										</label>
+									</p>
+									
+									<p> Saturday 
+										<label class="switch-original">
+											<input id = "day_of_week_restrictor_sat" type="checkbox">
+											<span class="check"></span>
+										</label>
+									</p>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <div class="heading">Lunch time setting</div>
+                                <div class="content">
+									<h5>
+										This enables user to set lunch time of driver. <br></br>
+										As a result, this change will cause driver's ui time slot to be unavailable at the time for which lunch is set. 
+									</h5>	
+											
+									<select id = "LunchTimeActivationToggler"> 
+										<option id = "7_30am" value="7:30am">7:30am</option>
+										<option id = "8_40am" value="8:40am">8:40am</option>
+										<option id = "9_50am" value="9:50am">9:50am</option>
+										<option id = "11_00am" value="11:00a">11:00am</option>
+										<option id = "12_10am" value="12:10p">12:10pm</option>
+										<option id = "1_20pm" value="1:20pm">1:20pm</option>
+										<option id = "2_30pm" value="2:30pm">2:30pm</option>
+										<option id = "3_40pm" value="3:40pm">3:40pm</option>
+										<option id = "4_50pm" value="4:50pm">4:50pm</option>
+										<option id = "5_00pm" value="5:00pm">5:00pm</option>
+										<option id = "6_10pm" value="6:10pm">6:10pm</option>
+									</select>
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <div class="heading">Day of month restrictions</div>
+                                <div class="content">
+									<h5>
+										This enables user to disable days (of month) on a driver's schedule. <br></br>
+										As a result, this change will cause days set to be unavailable on the driver's ui schedule.
+									</h5>	
+									<button type="submit" id = "_day_of_month_restricter_btn" class="button datepicker day_of_month_restricter"> Toggle day in month restricter
+									</button> <button type="submit" id = "_day_of_month_unrestricter_btn" class="button"> Remove restriction </button>			 
+                                </div>
+                            </div>
+                            <div class="frame">
+                                <div class="heading">Cuttoff times per day</div>
+                                <div class="content">
+									<h5>
+										This enables user to set maximum work hour for a particular day of the week for a driver.<br></br>
+										As a result, this change will cause driver's ui time slots to be disabled for any time after the set maximum.
+									</h5>	
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+			</div>
+			
+			<br> </br> <br> </br>
+        </div>	
+		
+		<div data-role="dialog" id="admin_slot_viewer" class="padding20" data-close-button="true" data-background="#3a3737" data-color="fg-white">
+            <h1>BookJaa Slot Viewer </h1>
+			
+			<div>
+				<table>
+					<thead>
+						<tr>	
+							<td class = "slot-viewer-table-header label">Driver Email </td>
+							<td class = "slot-viewer-table-header label">Week Day  </td>
+							<td class = "slot-viewer-table-header label">Month Day  </td>
+							<td class = "slot-viewer-table-header label">Month  </td>
+							<td class = "slot-viewer-table-header label">Time  </td>
+						</tr>
+					</thead>
+					
+				
+					<tbody id = "SlotList">
+					</tbody>
+				</table>
+			</div>
+			
+			<br> </br> <br> </br>
+        </div>	
+		
+        <div data-role="dialog" id="admin_restriction_day_of_month_success_dialog" class="padding20" data-close-button="true" data-type="info">
+            <h1>Restriction success message</h1>
+            <p>
+                Day of month successfully restricted, at day <span id = "admin_restriction_day_of_month_success_dialog_day"> </span>!
+            </p>
+        </div>	
+				
+        <div data-role="dialog" id="admin_unrestriction_day_of_month_success_dialog" class="padding20" data-close-button="true" data-type="info">
+            <h1>Unrestriction success message</h1>
+            <p>
+                Day of month successfully unrestricted!
+            </p>
+        </div>	
+		
+        <div data-role="dialog" id="admin_notification_marked_success_dialog" class="padding20" data-close-button="true" data-type="info">
+            <h1>Notification Marking</h1>
+            <p>
+                Notification marked as read.
+            </p>
+        </div>
+        <div data-role="dialog" id="admin_student_deletion_success_dialog" class="padding20" data-close-button="true" data-type="info">
+            <h1>Student Deletion</h1>
+            <p>
+                Student successfully deleted.
+            </p>
+        </div>	
+        <div data-role="dialog" id="admin_admin_deletion_success_dialog" class="padding20" data-close-button="true" data-type="info">
+            <h1>Admin Deletion</h1>
+            <p>
+                Admin successfully deleted.
+            </p>
+        </div>	
+		
+	</body>
+</html>

@@ -1,0 +1,111 @@
+
+AUTHOR: Jordan Micah BennettChangelog
+
+BookJaa V2 Changelog
+
+
+14/7/2017 1:13 am
+
+Notification Update!
+
+
+**GENERAL**
+Notification bell added top left screen.
+
+Notification bell has a little number indicating number of notifications.
+
+
+**STUDENT**
+Student booking triggers notification generation for drivers, system-admins and principals.
+
+
+**DRIVERS**
+Drivers can see notifications based on bookings only related to them.
+Drivers can delete notifications.
+Drivers can mark notifications as read. (Read notifications don't contribute to the count beside bell)
+
+
+**SYSTEM ADMINS/PRINCIPALS**
+Same as drivers, but they see notifications pertaining to all bookings.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+13/7/2017 2:21 am
+
+
+
+**STUDENTS**
+
+Student can only see his/her booking. (Cannot see what other students or users have booked)
+
+Student can filter time schedule by driver.
+
+Student can filter time schedule schedule by month/day
+
+Student can book (for any month, day, eg: Monday July 10, 8am, and Monday July 18 8am)
+
+Student cannot book same slot twice.
+
+No more warnings before booking, booking takes place directly from paper-plane icons in time schedule, and driver is chosen there too.
+
+New Guide button/dialog (for student help on how to use BookJaa)
+
+
+
+
+**SYSTEM ADMIN**
+
+Admin can delete booked items
+
+Admin can see all booked items
+
+Admin can filter time schedule by driver.
+
+Admin can filter time schedule schedule by month/day
+
+Admin can book (for any month, day, eg: Monday July 10, 8am, and Monday July 18 8am)
+
+Admin cannot book same slot twice, will be prompted with option to delete items matching hour/dayOfWeek toggle on second addition attempt
+
+New Guide button/dialog (for system admin help on how to use BookJaa)
+
+
+
+
+
+**DRIVERS**
+
+Driver can only see bookings related to him/her
+
+Driver can only see students related to him/her
+
+Driver cannot book (can change this if desired)
+
+
+
+
+
+**PRINCIPALS**
+
+Same as system admin, but with different code js.
+Will allow for separate abilities, as admin and principal run on separate schedule control js, html, php and database files.
+
+
+
+
+**GENERAL**
+CSS files organized such that no more filename_____.css exists.
+
+
+

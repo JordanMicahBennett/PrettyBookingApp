@@ -1,0 +1,45 @@
+
+
+1) Users (email, password, name, age, phone, license, profile-picture)
+
+2) Drivers (email, password, name, phone)
+
+3) Slots (DriverEmail, UserEmail, HourLabel, License, AvailabilityStatus)
+
+
+TEST_DATA
+
+///DRIVERS
+INSERT INTO `drivers`(`DriverEmail`, `DriverPassword`, `DriverName`, `DriverPhone`) VALUES ('maryjones@gmail.com', 'mary', 'Mary Jones', '982-3343');
+INSERT INTO `drivers`(`DriverEmail`, `DriverPassword`, `DriverName`, `DriverPhone`) VALUES ('jimwilliams@gmail.com', 'jim', 'Jim Williams', '342-5466');
+INSERT INTO `drivers`(`DriverEmail`, `DriverPassword`, `DriverName`, `DriverPhone`) VALUES ('robhinton@gmail.com', 'rob', 'Rob Hinton', '465-5655');
+
+
+
+///SLOTS(WILL REQUIRE ENTRY OF 8 SLOTS PER DRIVER, ON DRIVER CREATION)  UserEmail, & License & Transmission are empty by default, as no user has yet booked.
+
+//driver slots
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('maryjones@gmail.com','','8am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('maryjones@gmail.com','','9am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('maryjones@gmail.com','','10am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('maryjones@gmail.com','','11am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('maryjones@gmail.com','','12pm','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('maryjones@gmail.com','','1pm','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('maryjones@gmail.com','','2pm','','false');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('jimwilliams@gmail.com','','8am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('jimwilliams@gmail.com','','9am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('jimwilliams@gmail.com','','10am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('jimwilliams@gmail.com','','11am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('jimwilliams@gmail.com','','12pm','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('jimwilliams@gmail.com','','1pm','','false');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('jimwilliams@gmail.com','','2pm','','false');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('robhinton@gmail.com','','8am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('robhinton@gmail.com','','9am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('robhinton@gmail.com','','10am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('robhinton@gmail.com','','11am','','true');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('robhinton@gmail.com','','12pm','','false');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('robhinton@gmail.com','','1pm','','false');
+INSERT INTO `slots`(`DriverEmail`, `UserEmail`, `HourLabel`, `License`, `AvailabilityStatus`) VALUES ('robhinton@gmail.com','','2pm','','false');
+
+
+

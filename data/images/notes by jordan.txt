@@ -1,0 +1,1 @@
+User folder holds user profile picture information.

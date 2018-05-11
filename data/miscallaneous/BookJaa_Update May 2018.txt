@@ -1,0 +1,20 @@
+Added scroll capability to notification viewer (Updated data/css/notification_5.css, scheduler_admin_principal.html, scheduler_admin_system.html and scheduler_admin_driver.html)
+
+Added numbering to notification list via principal user (Updated "data/js/core_principal_notification_control_9.js -> enableNotificationRendering ( )")
+
+Added numbering to notification list via system user (Updated "data/js/core_system_notification_control_3.js -> enableNotificationRendering ( )")
+
+Added numbering to notification list via driver user (Updated "data/js/core_driver_notification_control_4.js -> enableNotificationRendering ( )")
+
+
+Added scroll capability to extra info viewer (Updated data/css/slot-viewer_2.css)
+
+Added numbering to extra info viewer list via principal user (Updated "data/js/core_admin_principal_11.js -> renderDriverAppointmentList ( selectedDriverEmail )")
+
+Added numbering to extra info viewer list via system user (Updated "data/js/core_admin_system_6.js -> renderDriverAppointmentList ( selectedDriverEmail )")
+
+
+
+Changed favicon
+
+Changed index page to remove large background image, that delays site loading

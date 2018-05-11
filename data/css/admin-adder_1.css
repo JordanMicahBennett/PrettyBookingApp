@@ -1,0 +1,98 @@
+body {
+	background: #ccc;
+	font: 87.5%/1.5em 'Lato', sans-serif;
+	margin: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+td {
+	padding: 0;
+}
+
+.container {
+	height: 600px;
+	left: 50%;
+	margin: -300px 0 0 -28%;
+	position: absolute;
+	top: 50%;
+	width: 600px;
+}
+
+.admin-adder-container {
+	position: relative;
+	width: 450px;
+}
+
+.admin-adder-container header {
+	background: #ffe200;
+	color: #fff;
+	padding: 3em 2em;
+	width: 650px;
+	/* border-radius: 1em 1em 0 0;*/
+}
+
+.header_label {
+	font-size: 8em;
+	font-weight: 900;
+	line-height: 1em;
+}
+
+.label
+{
+	color: #f1d90c;
+}
+
+.header_subtitle_label {
+	font-size: 4em;
+	line-height: 1em;
+	text-transform: lowercase;
+}
+
+.admin-adder {
+	/* border-radius: 0 0 1em 1em; */
+	background: #fff;
+	-webkit-box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+	box-shadow: 0 2px 1px rgba(0, 0, 0, .2), 0 3px 1px #fff;
+	color: #555;
+	width: 650px;
+	height: 415px;
+	display: inline-block;
+	padding-left: 38px;
+}
+
+.isOccupied
+{
+	color: #cacaca;
+}
+
+.admin-adder thead {
+	color: #e66b6b;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+.admin-adder td {
+	padding: .5em 1em;
+	text-align: center;
+	cursor: pointer;
+}
+
+.admin-adder tbody td:hover {
+	background: #cacaca;
+	color: #fff;
+}
+
+.current-day {
+	color: #e66b6b;
+}
+
+.prev-month,
+.next-month {
+	color: #cacaca;
+}
+
+

@@ -1,0 +1,11 @@
+/////////AUTHOR: Jordan Micah Bennett, BookJaa V2 2017
+
+
+/////////ADMIN TABLE
+The 'level' field in admin differentiates between admins;
+
+system=programmers
+principal=camela
+driver=drivers
+
+

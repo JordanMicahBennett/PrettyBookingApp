@@ -1,0 +1,29 @@
+.slot-viewer-table-header
+{
+	padding-left: 18px;
+	text-align: left;border: 1px transparent solid;
+}
+
+.slot-viewer-table-data
+{
+	padding-left: 18px;
+	text-align: left;
+}
+
+.clickable
+{
+	color: #f1d90c;
+	cursor: pointer;
+}
+
+#SlotList
+{
+	overflow-y:scroll;
+}
+
+.AdminList_ExtraDataList_Table {
+	width: 1200px;
+	height: 370px;
+	overflow-y: scroll;
+	display: inline-block;
+}

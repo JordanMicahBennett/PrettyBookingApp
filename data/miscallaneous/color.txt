@@ -1,0 +1,9 @@
+f3e9a2 light yellow
+f1edd0 light light yellow
+f1d90c dark yellow
+
+3a3737 grey
+
+
+dark yellow_latest: #ffe200
+light yellow_latest: #f1edd0
