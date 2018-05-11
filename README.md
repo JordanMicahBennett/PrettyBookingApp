@@ -4,8 +4,11 @@ This is a scratch written (except for flat ui css) platform that permits complex
 It is complete with the following sections:
 
 a. System side (super user)
+
 b. Driver side (cannot book appointment, can view associated students/relevant appointments to drivers)
+
 c. Student side(can book appointment)
+
 d. Principal side (similar to admin, can book appointments, add users and a lot more, but can't delete users)
 
 
