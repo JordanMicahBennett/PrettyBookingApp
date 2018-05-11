@@ -2,7 +2,7 @@
 
 
 # DESCRIPTION
-This is a scratch written (except for flat ui css) platform that permits complex appointment booking for a driving school.
+This is a scratch written (except for flat ui metro css) platform that permits complex appointment booking for a driving school.
 
 It is complete with the following sections:
 
