@@ -103,6 +103,8 @@ function enableNotificationRendering ( )
 						
 						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.pickupLocation));
 						
+						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.dropOffLocation));
+						
 						tableBody.append( $('<span class = "mif-cross slot-viewer-table-data clickable" />')
 								 .click(function() {
 									 enableNotificationDeletion ( discoveredHour+":"+ discoveredDayOfWeek +':'+ discoveredStudentEmail +':'+ discoveredAdminEmail +':'+discoveredMonth + ':'+ discoveredDayOfMonth );

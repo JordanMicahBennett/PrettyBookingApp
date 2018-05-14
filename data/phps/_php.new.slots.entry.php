@@ -33,16 +33,17 @@
 				$dayOfWeek = $_GET['DAY_OF_WEEK'];
 				$hour = $_GET['HOUR'];
 				$studentEmail = $_GET['STUDENT_EMAIL'];
+				$studentName = $_GET['STUDENT_NAME'];
 				$pickupLocation = $_GET['PICKUP_LOCATION'];
 				$pickupTime = $_GET['PICKUP_TIME'];
-				
+				$dropOffLocation = $_GET['DROPOFF_LOCATION'];
 				
 				////////////////////////////////////////////////////////////////////////////////////////////////
 				//BEGIN ADD NEW ADMIN TEXT BASED DETAILS PROCESSS - COMPONENT.1
 				////////////////////////////////////////////////////////////////////////////////////////////////		
 				//create new user
 					//generate user
-					$sql = "insert into slots(AdminEmail, DayOfMonth, Month, DayOfWeek, Hour, StudentEmail, PickupLocation, PickupTime) values ('$adminEmail', '$dayOfMonth', '$month', '$dayOfWeek', '$hour', '$studentEmail', '$pickupLocation', '$pickupTime')";
+					$sql = "insert into slots(AdminEmail, DayOfMonth, Month, DayOfWeek, Hour, StudentEmail, PickupLocation, PickupTime, DropOffLocation, StudentName) values ('$adminEmail', '$dayOfMonth', '$month', '$dayOfWeek', '$hour', '$studentEmail', '$pickupLocation', '$pickupTime', '$dropOffLocation', '$studentName')";
 					
 					$query = $connection->prepare($sql);
 					

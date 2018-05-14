@@ -29,8 +29,10 @@
 				//establish user input html element variables
 				$newStudentName = $_GET['NEW_STUDENT_NAME'];
 				$newStudentEmail = $_GET['NEW_STUDENT_EMAIL'];
+				$newStudentEmail2 = $_GET['NEW_STUDENT_EMAIL2'];
 				$newStudentAdminEmail = $_GET['NEW_STUDENT_ADMIN_EMAIL'];
 				$newStudentPhone = $_GET['NEW_STUDENT_PHONE'];
+				$newStudentPhone2 = $_GET['NEW_STUDENT_PHONE2'];
 				$newStudentTrn = $_GET['NEW_STUDENT_TRN'];
 				$newStudentPickup = $_GET['NEW_STUDENT_PICKUP'];
 				$newStudentPickup_Comment = $_GET['NEW_STUDENT_PICKUP_COMMENT'];
@@ -43,7 +45,7 @@
 				////////////////////////////////////////////////////////////////////////////////////////////////		
 				//create new user
 					//generate user
-					$sql = "insert into students(StudentEmail, AdminEmail, StudentPassword, StudentName, StudentAge, StudentPhone, StudentTargetLicense, StudentPickupLocation, StudentPickupLocation_Comment, StudentDropOffLocation, StudentDropOffLocation_Comment, Trn, IsFirstLogin, StudentProfilePictureStream) values ('$newStudentEmail','','','$newStudentName','','$newStudentPhone','','$newStudentPickup','$newStudentPickup_Comment','$newStudentDropOff','$newStudentDropOff_Comment', '$newStudentTrn', '', '' )";
+					$sql = "insert into students(StudentEmail, StudentEmail2, AdminEmail, StudentPassword, StudentName, StudentAge, StudentPhone, StudentPhone2, StudentTargetLicense, StudentPickupLocation, StudentPickupLocation_Comment, StudentDropOffLocation, StudentDropOffLocation_Comment, Trn, IsFirstLogin, StudentProfilePictureStream) values ('$newStudentEmail','$newStudentEmail2','','','$newStudentName','','$newStudentPhone','$newStudentPhone2','','$newStudentPickup','$newStudentPickup_Comment','$newStudentDropOff','$newStudentDropOff_Comment', '$newStudentTrn', '', '' )";
 					
 					$query = $connection->prepare($sql);
 					

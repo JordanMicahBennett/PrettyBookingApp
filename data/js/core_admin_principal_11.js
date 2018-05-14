@@ -26,7 +26,7 @@ $(document).ready
 		renderLevelList ( );
 		renderLicenseList ( );
 		renderAdminList ( );
-		renderStudentList ( );
+		renderStudentList__ ( );
 		renderPickupList ( );
 		renderDropOffList ( );
 		renderFrontend_Update ( );
@@ -57,8 +57,10 @@ $(document).ready
 			{
 				var newStudentName = document.getElementById ( 'StudentName' ).value;
 				var newStudentEmail = document.getElementById ( 'StudentEmail' ).value;
+				var newStudentEmail2 = document.getElementById ( 'StudentEmail2' ).value;
 				var newStudentAdminEmail = document.getElementById ( 'StudentInstructor' ).value;
 				var newStudentPhone = document.getElementById ( 'StudentPhone' ).value;
+				var newStudentPhone2 = document.getElementById ( 'StudentPhone2' ).value;
 				var newStudentTrn = document.getElementById ( 'StudentTrn' ).value;
 				var newStudentPickup = document.getElementById ( 'StudentPickup' ).value;
 				var newStudentPickup_Comment = document.getElementById ( 'StudentPickup_Comment' ).value;
@@ -67,7 +69,7 @@ $(document).ready
 				
 				$('#StudentAdditionNameLabel').html (newStudentName);
 		
-				enableNewStudentEntry ( newStudentName, newStudentEmail, newStudentAdminEmail, newStudentPhone, newStudentTrn, newStudentPickup, newStudentPickup_Comment, newStudentDropOff, newStudentDropOff_Comment );
+				enableNewStudentEntry_ ( newStudentName, newStudentEmail, newStudentEmail2, newStudentAdminEmail, newStudentPhone, newStudentPhone2, newStudentTrn, newStudentPickup, newStudentPickup_Comment, newStudentDropOff, newStudentDropOff_Comment )
 			}
 		);
 		
@@ -642,7 +644,7 @@ function enableRestrictionDriverInfoToggler ( selectedDriverEmail )
 }
 
 
-function renderStudentList ( )
+function renderStudentList__ ( )
 {
 	$.ajax
 	(
@@ -660,8 +662,8 @@ function renderStudentList ( )
 				$.each(response, function() {
 					tableBody.append('<tr>');
 					tableBody.append($("<td class = 'label'/>").val(this.studentName).text(this.studentName));
-					tableBody.append($("<td/>").val(this.studentEmail).text(this.studentEmail));
-					tableBody.append($("<td/>").val(this.studentPhone).text(this.studentPhone));
+					tableBody.append($("<td/>").val(this.studentEmail2.length > 1 ? this.studentEmail + " or " + this.studentEmail2 : this.studentEmail).text(this.studentEmail2.length > 1 ? this.studentEmail + " or " + this.studentEmail2 : this.studentEmail));
+					tableBody.append($("<td/>").val(this.studentPhone2 > 1 ? this.studentPhone + " or " + this.studentPhone2 : this.studentPhone).text(this.studentPhone2 > 1 ? this.studentPhone + " or " + this.studentPhone2 : this.studentPhone));
 					
 					tableBody.append($("<td/>").val(this.adminEmail).text(this.adminEmail));
 					
@@ -682,82 +684,81 @@ function renderStudentList ( )
 			}
 		}
 	);
-}	
+}		
 
 function renderDriverAppointmentList ( selectedDriverEmail )
 {
-	$('.AdminList_ExtraDataList_Table').hide(); //hide table if no driver related data is found
-	
+
+	//enable population
 	$.ajax
 	(
 		{
 			type: 'GET',
 
-			url: 'data/phps/_php.slots.php',
+			url: 'data/phps/_php.notifications.php',
 
 			dataType: 'json',
 
 			success: function ( response ) 
 			{
-				var infoRecordCount = 0;
+				//var slotViewerContainer = $(".slot-viewer_container");
+				var tableBody = $("#AdminList_ExtraDataList");
 				
-				//console.log(response);
+				var infoRecordCount = 0;
+
+				
 				$.each(response, function() {
-					var discoveredDriverEmail = this.adminEmail;
-					var discoveredStudentEmail = this.studentEmail;
-					var discoveredHour = this.hour;
-					var discoveredDayOfWeek = this.dayOfWeek;
-					var discoveredDayOfMonth = this.dayOfMonth;
-					var discoveredMonth = this.month;
-							$.ajax
-							(
-								{
-									type: 'GET',
-
-									url: 'data/phps/_php.student.list.php',
-
-									dataType: 'json',
-
-									success: function ( inner_response ) 
-									{
-										var tableBody = $("#AdminList_ExtraDataList");
-										
-										$.each(inner_response, function() {
-											if ( discoveredDriverEmail == selectedDriverEmail && discoveredStudentEmail == this.studentEmail ) //drivers can only see their students
-											{
-												infoRecordCount ++;
-												
-												$('.AdminList_ExtraDataList_Table').show(); //show table incase it was hidden by some other procedure
-												
-												tableBody.append('<tr>');
-												tableBody.append($("<td class = 'slot-viewer-table-data'/>").val(this.studentName).text(infoRecordCount + ".) " + this.studentName));
-												
-														//format hour
-														var in_min_am_pm = discoveredHour.split('_')[1];
-														var in_min = in_min_am_pm.replace( /\D+/g, '');
-														var in_am_pm = in_min_am_pm.replace( /[0-9]/g, '');
-												
-												tableBody.append($("<td class = 'slot-viewer-table-data'/>").val(discoveredHour).text(discoveredHour.split('_')[0]  + ":" + in_min + " " + in_am_pm ));
-												tableBody.append($("<td class = 'slot-viewer-table-data'/>").val(discoveredDayOfWeek).text(discoveredDayOfWeek));
-												tableBody.append($("<td class = 'slot-viewer-table-data'/>").val(discoveredDayOfMonth).text(discoveredDayOfMonth));
-												tableBody.append($("<td class = 'slot-viewer-table-data'/>").val(discoveredMonth).text(discoveredMonth));
-												tableBody.append($("<td class = 'slot-viewer-table-data'/>").val(this.studentEmail).text(this.studentEmail));
-												tableBody.append('</tr>');
-											}
-										});	
-									},
-									error: function (inner_failure_data) 
-									{
-									}
-								}
-							);
+					if ( this.adminEmail == selectedDriverEmail )
+					{
+						console.log('renderDriverAppointmentList__');
+						console.log('discoveredLine --> '+this.hour + ", " + this.dayOfWeek + ", " + this.dayOfMonth + ", " + this.month + ", " + this.studentEmail + ", " + this.adminEmail );
+						
+						infoRecordCount ++;
+						var discoveredHour = this.hour;
+						var discoveredDayOfWeek = this.dayOfWeek;
+						var discoveredDayOfMonth = this.dayOfMonth;
+						var discoveredMonth = this.month;
+						var discoveredStudentEmail = this.studentEmail;
+						var discoveredAdminEmail = this.adminEmail;
+						
+						tableBody.append('<tr>');
+						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(infoRecordCount + ".) " + this.studentName));
+						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.adminEmail));
+						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.studentEmail));		  
+						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.dayOfWeek));
+						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.dayOfMonth));
+						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.month));
+					
+						var in_min_am_pm = this.hour.split('_')[1];
+						var in_min = in_min_am_pm.replace( /\D+/g, '');
+						var in_am_pm = in_min_am_pm.replace( /[0-9]/g, '');
+							
+						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.hour.split('_')[0]  + ":" + in_min + " " + in_am_pm));
+						
+						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.pickupLocation));
+						
+						tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.dropOffLocation));
+						
+						tableBody.append( $('<span class = "mif-cross slot-viewer-table-data clickable" />')
+								 .click(function() {
+									 enableNotificationDeletion ( discoveredHour+":"+ discoveredDayOfWeek +':'+ discoveredStudentEmail +':'+ discoveredAdminEmail +':'+discoveredMonth + ':'+ discoveredDayOfMonth );
+								  }));
+						tableBody.append( $('<span class = "mif-eye slot-viewer-table-data clickable" />')
+								 .click(function() {
+									 enableNotification_MarkAsRead ( discoveredHour+":"+ discoveredDayOfWeek +':'+ discoveredStudentEmail +':'+ discoveredAdminEmail +':'+discoveredMonth + ':'+ discoveredDayOfMonth );
+								  }));
+								  
+						tableBody.append('</tr>');
+					}
 				});	
 			},
 			error: function (data) 
 			{
+				console.log(data);
 			}
 		}
 	);
+
 }	
 
 function renderPickupList ( )
@@ -846,7 +847,7 @@ function renderStudentAdditionPickupList ()
 
 			success: function ( response ) 
 			{
-				console.log(response);
+				//console.log(response);
 				var options = $("#StudentPickup");
 				
 				$.each(response, function() {
@@ -873,7 +874,7 @@ function renderStudentAdditionDropOffsList ()
 
 			success: function ( response ) 
 			{
-				console.log(response);
+				//console.log(response);
 				var options = $("#StudentDropOff");
 				
 				$.each(response, function() {
@@ -1175,14 +1176,14 @@ function enableDropOffDeletion ( itemName )
 	});
 }
 
-function enableNewStudentEntry ( newStudentName, newStudentEmail, newStudentAdminEmail, newStudentPhone, newStudentTrn, newStudentPickup, newStudentPickup_Comment, newStudentDropOff, newStudentDropOff_Comment )
+function enableNewStudentEntry_ ( newStudentName, newStudentEmail, newStudentEmail2, newStudentAdminEmail, newStudentPhone, newStudentPhone2, newStudentTrn, newStudentPickup, newStudentPickup_Comment, newStudentDropOff, newStudentDropOff_Comment )
 {
 	$.ajax
 	(
 		{
 			type: 'POST',
 							
-			url: 'data/phps/_php.new.student.entry.by.admin.php?NEW_STUDENT_NAME=' + newStudentName + '&NEW_STUDENT_EMAIL=' + newStudentEmail + '&NEW_STUDENT_ADMIN_EMAIL=' + newStudentAdminEmail + '&NEW_STUDENT_PHONE=' + newStudentPhone + '&NEW_STUDENT_TRN=' + newStudentTrn + '&NEW_STUDENT_PICKUP=' + newStudentPickup + '&NEW_STUDENT_PICKUP_COMMENT=' + newStudentPickup_Comment + '&NEW_STUDENT_DROPOFF=' + newStudentDropOff + '&NEW_STUDENT_DROPOFF_COMMENT=' + newStudentDropOff_Comment, 
+			url: 'data/phps/_php.new.student.entry.by.admin.php?NEW_STUDENT_NAME=' + newStudentName + '&NEW_STUDENT_EMAIL=' + newStudentEmail + '&NEW_STUDENT_EMAIL2=' + newStudentEmail2 + '&NEW_STUDENT_ADMIN_EMAIL=' + newStudentAdminEmail + '&NEW_STUDENT_PHONE=' + newStudentPhone + '&NEW_STUDENT_PHONE2=' + newStudentPhone2 + '&NEW_STUDENT_TRN=' + newStudentTrn + '&NEW_STUDENT_PICKUP=' + newStudentPickup + '&NEW_STUDENT_PICKUP_COMMENT=' + newStudentPickup_Comment + '&NEW_STUDENT_DROPOFF=' + newStudentDropOff + '&NEW_STUDENT_DROPOFF_COMMENT=' + newStudentDropOff_Comment, 
 
 			data : null,
 			
@@ -1195,11 +1196,12 @@ function enableNewStudentEntry ( newStudentName, newStudentEmail, newStudentAdmi
 			success: function ( data ) 
 			{
 				metroDialog.toggle('#student_addition_success_dialog');
-				setTimeout(function(){ location.reload(); }, 630);
+				setTimeout(function(){ location.reload(); }, 830);
 			}
 		}
 	);
 }
+
 
 function enableStudentDeletion ( studentEmail )
 {

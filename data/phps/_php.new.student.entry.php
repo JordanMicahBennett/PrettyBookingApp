@@ -39,7 +39,7 @@
 				////////////////////////////////////////////////////////////////////////////////////////////////		
 				//create new user
 					//generate user
-					$sql = "insert into students(StudentEmail, AdminEmail, StudentPassword, StudentName, StudentAge, StudentPhone, StudentTargetLicense, StudentPickupLocation, IsFirstLogin, StudentProfilePictureStream) values ('$newStudentEmail','','$newStudentPassword','$newStudentName','', '$newStudentPhone', '', '', '', '' )";
+					$sql = "insert into students(StudentEmail, StudentEmail2, AdminEmail, StudentPassword, StudentName, StudentAge, StudentPhone, StudentPhone2, StudentTargetLicense, StudentPickupLocation, StudentPickupLocation_Comment, StudentDropOffLocation, StudentDropOffLocation_Comment, Trn, IsFirstLogin, StudentProfilePictureStream) values ('$newStudentEmail','','','','$newStudentName','','$newStudentPhone','','','','','','', '', '', '' )";
 					
 					$query = $connection->prepare($sql);
 					

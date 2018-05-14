@@ -28,8 +28,10 @@
 		{
 			$output[] = array(
 			"studentEmail" => $row['StudentEmail'],
+			"studentEmail2" => $row['StudentEmail2'],
 			"studentName" => $row['StudentName'],
 			"studentPhone" => $row['StudentPhone'],
+			"studentPhone2" => $row['StudentPhone2'],
 			"isFirstLogin" => $row['IsFirstLogin'],
 			"adminEmail" => $row['AdminEmail']
 			);

@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.3
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 18, 2017 at 07:36 PM
--- Server version: 5.6.38
+-- Generation Time: May 14, 2018 at 02:27 AM
+-- Server version: 5.6.39
 -- PHP Version: 5.6.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -44,11 +44,18 @@ INSERT INTO `admins` (`AdminEmail`, `AdminPassword`, `AdminName`, `AdminPhone`, 
 ('admin@jaa.com', 'admin', 'Admin', '547-0790', 'System'),
 ('clintguthrie@jaa.com', 'Jaadriving@1', 'Clint Guthrie', '', 'Driver'),
 ('coneilanderson@jaa.com', 'Jaadriving@1', 'Coneil Anderson', '', 'Principal'),
+('diego@jaa.com', 'pwd2018', 'Diego Jordan', '', 'Principal'),
 ('duanebrown@jaa.com', 'modern2017', 'Duane Brown', '', 'System'),
 ('howardlewis@jaa.com', 'Jaadriving@1', 'Howard Lewis', '', 'Driver'),
 ('jordanbennett@jaa.com', 'modern2017', 'Jordan Bennett', '', 'System'),
 ('kamilahanderson@jaa.com', 'Jaadriving@1', 'Kamilah Anderson', '', 'Principal'),
-('sydneywedderburn@jaa.com', 'Jaadriving@1', 'Sydney Wedderburn', '', 'Driver');
+('kevin@jaa.com', 'pwd2018', 'Kevin Thompson', '', 'Principal'),
+('kimberly@jaa.com', 'pwd2018', 'Kimberly Martin', '', 'Principal'),
+('lundie@jaa.com', 'pwd2018', 'Lundie-Rae Martin', '', 'Principal'),
+('Patricia@jaa.com', 'pwd2018', 'Patricia Lawrence', '', 'Principal'),
+('suan@jaa.com', 'pwd2018', 'Suan Mendez', '', 'Principal'),
+('sydneywedderburn@jaa.com', 'Jaadriving@1', 'Sydney Wedderburn', '', 'Driver'),
+('Trifina@jaa.com', 'pwd2018', 'Trifina Ellis', '', 'Principal');
 
 -- --------------------------------------------------------
 
@@ -72,7 +79,15 @@ INSERT INTO `admins_licenses` (`AdminEmail`, `LicenseId`) VALUES
 ('clintguthrie@jaa.com', 'gm_pa'),
 ('sydneywedderburn@jaa.com', 'gm_pa'),
 ('kamilahanderson@jaa.com', 'na'),
-('coneilanderson@jaa.com', 'na');
+('coneilanderson@jaa.com', 'na'),
+('lundie@jaa.com', 'na'),
+('Patricia@jaa.com', 'na'),
+('kevin@jaa.com', 'na'),
+('Trifina@jaa.com', 'na'),
+('kimberly@jaa.com', 'na'),
+('suan@jaa.com', 'na'),
+('diego@jaa.com', 'na'),
+('patricia@jaa.com', 'na');
 
 -- --------------------------------------------------------
 
@@ -90,7 +105,12 @@ CREATE TABLE `dropoffs` (
 
 INSERT INTO `dropoffs` (`Item`) VALUES
 ('Portland'),
-('Ocho Rios');
+('Half Way Tree'),
+('77 Smiles Avenue'),
+('Holy Trinity High School- 18 George Headly Drive, Kgn 4'),
+('34A Beverly Drive, Kingston 6'),
+('University of the West Indies'),
+('No Dropoff');
 
 -- --------------------------------------------------------
 
@@ -151,18 +171,23 @@ CREATE TABLE `notifications` (
   `StudentEmail` varchar(99) NOT NULL,
   `Hour` varchar(99) NOT NULL,
   `IsMarkedRead` varchar(99) NOT NULL,
-  `PickupLocation` varchar(400) NOT NULL
+  `PickupLocation` varchar(400) NOT NULL,
+  `DropOffLocation` varchar(200) NOT NULL,
+  `StudentName` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `notifications`
 --
 
-INSERT INTO `notifications` (`AdminEmail`, `DayOfWeek`, `DayOfMonth`, `Month`, `StudentEmail`, `Hour`, `IsMarkedRead`, `PickupLocation`) VALUES
-('clintguthrie@jaa.com', 'sun', '5', 'November', 'uchiha@gmail.com', '9_50am', '', 'Half Way Tree'),
-('clintguthrie@jaa.com', 'sun', '5', 'November', 'uchiha@gmail.com', '9_50am', '', 'Half Way Tree'),
-('clintguthrie@jaa.com', 'sat', '4', 'November', 'uchiha@gmail.com', '2_30pm', '', 'Half Way Tree'),
-('clintguthrie@jaa.com', 'sat', '4', 'November', 'uchiha@gmail.com', '2_30pm', '', 'Half Way Tree');
+INSERT INTO `notifications` (`AdminEmail`, `DayOfWeek`, `DayOfMonth`, `Month`, `StudentEmail`, `Hour`, `IsMarkedRead`, `PickupLocation`, `DropOffLocation`, `StudentName`) VALUES
+('clintguthrie@jaa.com', 'wed', '2', 'May', 'sheneil1876@gmail.com', '7_30am', '', 'Half Way Tree ', 'Portland', 'Sheneil Johnson'),
+('howardlewis@jaa.com', 'tue', '2', 'January', 'smithdior4@gmail.com', '8_40am', '', 'Half Way Tree ', '77 Smiles Avenue', 'Imani Palmer'),
+('clintguthrie@jaa.com', 'wed', '18', 'July', 'olyveabrady52@gmail.com ', '11_00am', '', 'Papine', 'Holy Trinity High School- 18 George Headly Drive, Kgn 4', 'Olivia Brady'),
+('clintguthrie@jaa.com', 'mon', '5', 'February', 'lyssaunh@yahoo.com', '11_00am', '', 'Half Way Tree ', '77 Smiles Avenue', 'Lyssaun Howell'),
+('clintguthrie@jaa.com', 'fri', '2', 'February', 'm.celservice.ja@gmail.com', '8_40am', '', 'Downtown ', 'University of the West Indies', 'Antoine McIntosh'),
+('sydneywedderburn@jaa.com', 'thu', '1', 'February', 'kelwaugh7@gmail.com', '8_40am', '', 'Cross Roads ', '34A Beverly Drive, Kingston 6', 'Kellisa Waugh'),
+('howardlewis@jaa.com', 'tue', '11', 'December', 'sheneil1876@gmail.com', '7_30am', '', 'Downtown ', '34A Beverly Drive, Kingston 6', 'Sheneil Johnson');
 
 -- --------------------------------------------------------
 
@@ -202,7 +227,11 @@ INSERT INTO `pickups` (`Item`) VALUES
 ('Downtown \r\n'),
 ('Constant Spring'),
 ('Papine'),
-('No Pickup');
+('No Pickup'),
+('Holy Trinity High School- 18 George Headly Drive, Kgn 4'),
+('34A Beverly Drive, Kingston 6'),
+('University of the West Indies'),
+('Bank of Jamaica');
 
 -- --------------------------------------------------------
 
@@ -294,18 +323,23 @@ CREATE TABLE `slots` (
   `Hour` varchar(20) NOT NULL,
   `StudentEmail` varchar(400) NOT NULL,
   `PickupLocation` varchar(999) NOT NULL,
-  `PickupTime` varchar(200) NOT NULL
+  `PickupTime` varchar(200) NOT NULL,
+  `DropOffLocation` varchar(200) NOT NULL,
+  `StudentName` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `slots`
 --
 
-INSERT INTO `slots` (`AdminEmail`, `DayOfMonth`, `Month`, `DayOfWeek`, `Hour`, `StudentEmail`, `PickupLocation`, `PickupTime`) VALUES
-('clintguthrie@jaa.com', '7', 'November', 'tue', '8_40am', 'uchiha@gmail.com', 'Half Way Tree ', '8 : 10 am'),
-('clintguthrie@jaa.com', '5', 'November', 'sun', '9_50am', 'uchiha@gmail.com', 'Half Way Tree ', '9 : 20 am'),
-('howardlewis@jaa.com', '4', 'November', 'sat', '12_10pm', 'uchiha@gmail.com', 'Half Way Tree ', '11 : 40 am'),
-('clintguthrie@jaa.com', '4', 'November', 'sat', '2_30pm', 'uchiha@gmail.com', 'Half Way Tree ', '2 : 0 pm');
+INSERT INTO `slots` (`AdminEmail`, `DayOfMonth`, `Month`, `DayOfWeek`, `Hour`, `StudentEmail`, `PickupLocation`, `PickupTime`, `DropOffLocation`, `StudentName`) VALUES
+('clintguthrie@jaa.com', '2', 'May', 'wed', '7_30am', 'sheneil1876@gmail.com', 'Half Way Tree ', '', 'Portland', 'Sheneil Johnson'),
+('howardlewis@jaa.com', '2', 'January', 'tue', '8_40am', 'smithdior4@gmail.com', 'Half Way Tree ', '8 : 10 am', '77 Smiles Avenue', 'Imani Palmer'),
+('clintguthrie@jaa.com', '18', 'July', 'wed', '11_00am', 'olyveabrady52@gmail.com ', 'Papine', '10 : 30 am', 'Holy Trinity High School- 18 George Headly Drive, Kgn 4', 'Olivia Brady'),
+('clintguthrie@jaa.com', '5', 'February', 'mon', '11_00am', 'lyssaunh@yahoo.com', 'Half Way Tree ', '', '77 Smiles Avenue', 'Lyssaun Howell'),
+('clintguthrie@jaa.com', '2', 'February', 'fri', '8_40am', 'm.celservice.ja@gmail.com', 'Downtown ', '8 : 10 am', 'University of the West Indies', 'Antoine McIntosh'),
+('sydneywedderburn@jaa.com', '1', 'February', 'thu', '8_40am', 'kelwaugh7@gmail.com', 'Cross Roads ', '', '34A Beverly Drive, Kingston 6', 'Kellisa Waugh'),
+('howardlewis@jaa.com', '11', 'December', 'tue', '7_30am', 'sheneil1876@gmail.com', 'Downtown ', '', '34A Beverly Drive, Kingston 6', 'Sheneil Johnson');
 
 -- --------------------------------------------------------
 
@@ -364,11 +398,13 @@ INSERT INTO `slots_formats_hour_labels` (`Item`, `OrderId`) VALUES
 
 CREATE TABLE `students` (
   `StudentEmail` varchar(99) NOT NULL,
+  `StudentEmail2` varchar(200) NOT NULL,
   `AdminEmail` varchar(99) NOT NULL,
   `StudentPassword` varchar(99) NOT NULL,
   `StudentName` varchar(99) NOT NULL,
   `StudentAge` varchar(99) NOT NULL,
   `StudentPhone` varchar(99) NOT NULL,
+  `StudentPhone2` varchar(200) NOT NULL,
   `StudentTargetLicense` varchar(99) NOT NULL,
   `StudentPickupLocation` varchar(99) NOT NULL,
   `StudentPickupLocation_Comment` varchar(999) NOT NULL,
@@ -383,8 +419,26 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`StudentEmail`, `AdminEmail`, `StudentPassword`, `StudentName`, `StudentAge`, `StudentPhone`, `StudentTargetLicense`, `StudentPickupLocation`, `StudentPickupLocation_Comment`, `StudentDropOffLocation`, `StudentDropOffLocation_Comment`, `Trn`, `IsFirstLogin`, `StudentProfilePictureStream`) VALUES
-('uchiha@gmail.com', 'clintguthrie@jaa.com', '', 'Itachi Uchiha', '', '981-6702', '', '', 'n/a', 'Ocho Rios', 'Abysmall Avenue, Ochi', '122-744-344', '', '');
+INSERT INTO `students` (`StudentEmail`, `StudentEmail2`, `AdminEmail`, `StudentPassword`, `StudentName`, `StudentAge`, `StudentPhone`, `StudentPhone2`, `StudentTargetLicense`, `StudentPickupLocation`, `StudentPickupLocation_Comment`, `StudentDropOffLocation`, `StudentDropOffLocation_Comment`, `Trn`, `IsFirstLogin`, `StudentProfilePictureStream`) VALUES
+('altheatownsend10@gmail.com', '', '', '', 'Althea Townsend', '', '3857120', '9776489', '', 'No Pickup', '', 'No Dropoff', '', '108450201', '', ''),
+('domoniquebarnett7@gmail.com', '', '', '', 'Domonique Barnett', '', '4196734', '', '', 'Bank of Jamaica', '', 'Half Way Tree', '', '125441045', '', ''),
+('ethelcarpenter25@gmail.com', '', '', '', 'Ethel Carpenter-Johnson', '', '2799015', '', '', 'Holy Trinity High School- 18 George Headly Drive, Kgn 4', '', 'Holy Trinity High School- 18 George Headly Drive, Kgn 4', '', '104415746', '', ''),
+('hall.santina@yahoo.com', '', '', '', 'Santina Hall', '', '5412512', '', '', 'No Pickup', '', 'NO DROP OFF', '', '122978150', '', ''),
+('jason_colesmith@hotmail.com', '', '', '', 'Jason-Cole Smith', '', '4916672', '', '', 'No Pickup', '', '77 Smiles Avenue', 'No Drop Off', '124922775', '', ''),
+('jermaine.matheson11@gmail.com', '', '', '', 'Jermaine Matheson', '', '3916624', '', '', 'No Pickup', '', 'NO DROP OFF', '', '115694315', '', ''),
+('kelwaugh7@gmail.com', '', '', '', 'Kellisa Waugh', '', '4302843', '', '', 'University of the West Indies', '', 'University of the West Indies', '', '129374334', '', ''),
+('lyssaunh@yahoo.com', '', '', '', 'Lyssaun Howell', '', '3569262', '', '', 'No Pickup', '', 'No Dropoff', '', '129727440', '', ''),
+('m.celservice.ja@gmail.com', '', '', '', 'Antoine McIntosh', '', '8315840', '', '', 'No Pickup', '', 'NO DROP OFF', '', '125398867', '', ''),
+('mish.rhoomes@gmail.com', '', '', '', 'Mishka Rhoomes', '', '3708026', '', '', 'No Pickup', '', 'NO DROP OFF', '', '125322224', '', ''),
+('misspinnock@hotmail.com', '', '', '', 'Kimoy Pinnock', '', '4681410', '', '', 'No Pickup', '', 'NO DROP OFF', '', '120523752', '', ''),
+('nchristie451@gmail.com', '', '', '', 'Nicardo Christie', '', '5787101', '3053300', '', 'No Pickup', '', 'NO DROP OFF', '', '117103144', '', ''),
+('neesadoc@gmail.com', 'simdoc@hotmail.com', '', '', 'Neesa Dacosta', '', '2900070', '3513407', '', 'No Pickup', '', 'NO DROP OFF', '', '130674451', '', ''),
+('nikki_williams@live.com', '', '', '', 'Nikki Williams', '', '3639556', '', '', 'No Pickup', '', 'NO DROP OFF', '', '119120544', '', ''),
+('olyveabrady52@gmail.com ', '', '', '', 'Olivia Brady', '', '7905647', '9069311', '', 'No Pickup', '', 'NO DROP OFF', '', '122178335', '', ''),
+('shavfab@yahoo.com', '', '', '', 'Shavina Lennon', '', '4727295', '', '', 'No Pickup', '', 'NO DROP OFF', '', '121900436', '', ''),
+('sheneil1876@gmail.com', '', '', '', 'Sheneil Johnson', '', '3912624', '', '', 'No Pickup', '', 'NO DROP OFF', '', '122047869', '', ''),
+('smithdior4@gmail.com', '', '', '', 'Imani Palmer', '', '7733722', '', '', 'No Pickup', '', 'NO DROP OFF', '', '126432465', '', ''),
+('smithroslyn15@gmail.com', '', '', '', 'Roslyn Smith', '', '4591546', '', '', '34A Beverly Drive, Kingston 6', '', '34A Beverly Drive, Kingston 6', '', '119402785', '', '');
 
 --
 -- Indexes for dumped tables

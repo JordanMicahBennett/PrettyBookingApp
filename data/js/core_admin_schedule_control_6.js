@@ -1,12 +1,14 @@
 //////////////////////////////////////////////
 //Author: Jordan Micah Bennett, BookJaa V2 2017
 
-var CURRENT_SELECTION_STUDENT = "";
+var CURRENT_SELECTION_STUDENT_EMAIL = "";
+var CURRENT_SELECTION_STUDENT_NAME = "";
 var CURRENT_SELECTION_DAY_OF_WEEK = "";
 var CURRENT_SELECTION_DAY_OF_MONTH = "";
 var CURRENT_SELECTION_MONTH = ""; 
 var CURRENT_SELECTION_HOUR = "";
 var CURRENT_SELECTION_PICKUP_LOCATION = "";
+var CURRENT_SELECTION_DROPOFF_LOCATION = "";
 var CURRENT_SELECTION_PICKUP_TIME = "";
 var CURRENT_SELECTION_INSTRUCTOR = "";
 
@@ -123,6 +125,9 @@ function enableBookerControlDialog ( )
 					<label for="BookerControl_PickupLocation">Pickup Location</label>\
 					<select class="js-select full-size" value = "" id = "BookerControl_PickupLocation">\
 					</select> <br></br>\
+					<label for="BookerControl_DropOffLocation">DropOff Location</label>\
+					<select class="js-select full-size" value = "" id = "BookerControl_DropOffLocation">\
+					</select> <br></br>\
 					<label for="BookerControl_PackageChooser">Package</label>\
 					<select class="js-select full-size" id = "BookerControl_PackageChooser">\
 					</select> <br></br>\
@@ -137,8 +142,10 @@ function enableBookerControlDialog ( )
 			{
 				title: "Go",
 				onclick: function(el){
-					CURRENT_SELECTION_STUDENT = $('#BookerControl_StudentChooser option:selected').attr("id");
+					CURRENT_SELECTION_STUDENT_EMAIL = $('#BookerControl_StudentChooser option:selected').attr("id");
+					CURRENT_SELECTION_STUDENT_NAME = $('#BookerControl_StudentChooser option:selected').val();
 					CURRENT_SELECTION_PICKUP_LOCATION = $('#BookerControl_PickupLocation option:selected').val();
+					CURRENT_SELECTION_DROPOFF_LOCATION = $('#BookerControl_DropOffLocation option:selected').val();
 					CURRENT_SELECTION_MONTH = $('#BookerControl_Month option:selected').text();
 					CURRENT_SELECTION_DAY_OF_MONTH = $('#BookerControl_DayOfMonth option:selected').text();
 					CURRENT_SELECTION_INSTRUCTOR = $('#BookerControl_DriverChooser option:selected').attr("id");
@@ -163,6 +170,7 @@ function enableBookerControlDialog ( )
 	
     ____enableBookerControl_renderPackageList ( );
 	____enableBookerControl_renderPickupLocationList ( );
+	____enableBookerControl_renderDropOffLocationList ( );
 	____enableBookerControl_renderMonthList ( );
 	____enableBookerControl_renderDayList ( );
 	____enableBookerControl_studentList ( );
@@ -403,7 +411,7 @@ function enableDatabaseUpdate ( )
 		{
 			type: 'POST',
 							
-			url: 'data/phps/_php.new.notifications.entry.php?DRIVER_ID=' + CURRENT_SELECTION_INSTRUCTOR + '&DAY_OF_WEEK=' + CURRENT_SELECTION_DAY_OF_WEEK + '&DAY_OF_MONTH=' + CURRENT_SELECTION_DAY_OF_MONTH + '&MONTH=' + CURRENT_SELECTION_MONTH + '&STUDENT_EMAIL=' + CURRENT_SELECTION_STUDENT + '&HOUR=' + CURRENT_SELECTION_HOUR + '&PICKUP_LOCATION=' + CURRENT_SELECTION_PICKUP_LOCATION, 
+			url: 'data/phps/_php.new.notifications.entry.php?DRIVER_ID=' + CURRENT_SELECTION_INSTRUCTOR + '&DAY_OF_WEEK=' + CURRENT_SELECTION_DAY_OF_WEEK + '&DAY_OF_MONTH=' + CURRENT_SELECTION_DAY_OF_MONTH + '&MONTH=' + CURRENT_SELECTION_MONTH + '&STUDENT_EMAIL=' + CURRENT_SELECTION_STUDENT_EMAIL + '&HOUR=' + CURRENT_SELECTION_HOUR + '&PICKUP_LOCATION=' + CURRENT_SELECTION_PICKUP_LOCATION, 
 
 			data : null,
 			
@@ -570,7 +578,7 @@ function ___enableDatabaseUpdate ( )
 		{
 			type: 'POST',
 							
-			url: 'data/phps/_php.new.slots.entry.php?DRIVER_ID=' + CURRENT_SELECTION_INSTRUCTOR + '&DAY_OF_MONTH=' + CURRENT_SELECTION_DAY_OF_MONTH + '&MONTH=' + CURRENT_SELECTION_MONTH + '&DAY_OF_WEEK=' + CURRENT_SELECTION_DAY_OF_WEEK + '&HOUR=' + CURRENT_SELECTION_HOUR + '&STUDENT_EMAIL=' + CURRENT_SELECTION_STUDENT + '&PICKUP_LOCATION=' + CURRENT_SELECTION_PICKUP_LOCATION + '&PICKUP_TIME=' + CURRENT_SELECTION_PICKUP_TIME, 
+			url: 'data/phps/_php.new.slots.entry.php?DRIVER_ID=' + CURRENT_SELECTION_INSTRUCTOR + '&DAY_OF_MONTH=' + CURRENT_SELECTION_DAY_OF_MONTH + '&MONTH=' + CURRENT_SELECTION_MONTH + '&DAY_OF_WEEK=' + CURRENT_SELECTION_DAY_OF_WEEK + '&HOUR=' + CURRENT_SELECTION_HOUR + '&STUDENT_EMAIL=' + CURRENT_SELECTION_STUDENT_EMAIL + '&PICKUP_LOCATION=' + CURRENT_SELECTION_PICKUP_LOCATION + '&DROPOFF_LOCATION=' + CURRENT_SELECTION_DROPOFF_LOCATION + '&PICKUP_TIME=' + CURRENT_SELECTION_PICKUP_TIME + '&STUDENT_NAME=' + CURRENT_SELECTION_STUDENT_NAME, 
 
 			data : null,
 			
@@ -600,8 +608,8 @@ function ___enableDatabaseUpdate ( )
 	(
 		{
 			type: 'POST',
-							
-			url: 'data/phps/_php.new.notifications.entry.php?DRIVER_ID=' + CURRENT_SELECTION_INSTRUCTOR + '&DAY_OF_WEEK=' + CURRENT_SELECTION_DAY_OF_WEEK + '&DAY_OF_MONTH=' + CURRENT_SELECTION_DAY_OF_MONTH + '&MONTH=' + CURRENT_SELECTION_MONTH + '&STUDENT_EMAIL=' + CURRENT_SELECTION_STUDENT + '&HOUR=' + CURRENT_SELECTION_HOUR + '&PICKUP_LOCATION=' + CURRENT_SELECTION_PICKUP_LOCATION, 
+			
+			url: 'data/phps/_php.new.notifications.entry.php?DRIVER_ID=' + CURRENT_SELECTION_INSTRUCTOR + '&DAY_OF_WEEK=' + CURRENT_SELECTION_DAY_OF_WEEK + '&DAY_OF_MONTH=' + CURRENT_SELECTION_DAY_OF_MONTH + '&MONTH=' + CURRENT_SELECTION_MONTH + '&STUDENT_EMAIL=' + CURRENT_SELECTION_STUDENT_EMAIL + '&HOUR=' + CURRENT_SELECTION_HOUR + '&PICKUP_LOCATION=' + CURRENT_SELECTION_PICKUP_LOCATION + '&DROPOFF_LOCATION=' + CURRENT_SELECTION_DROPOFF_LOCATION + '&STUDENT_NAME=' + CURRENT_SELECTION_STUDENT_NAME,   
 
 			data : null,
 			
@@ -851,6 +859,31 @@ function ____enableBookerControl_renderPickupLocationList ( )
 	);
 }
 
+function ____enableBookerControl_renderDropOffLocationList ( )
+{
+	$.ajax
+	(
+		{
+			type: 'GET',
+
+			url: 'data/phps/_php.dropoffs.php',
+
+			dataType: 'json',
+
+			success: function ( response ) 
+			{
+				var options = $("#BookerControl_DropOffLocation");
+				
+				$.each(response, function() {
+					options.append($("<option />").val(this.item).text(this.item));
+				});	
+			},
+			error: function (data) 
+			{
+			}
+		}
+	);
+}
 
 
 function ____enableBookerControl_renderDayList ( )

@@ -88,6 +88,7 @@ function enableNotificationRendering ( )
 					
 					tableBody.append('<tr>');
 					tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(notificationCount + ".) " + this.adminEmail));
+					tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.studentName));
 					tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.studentEmail));		  
 					tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.dayOfWeek));
 					tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.dayOfMonth));
@@ -100,6 +101,8 @@ function enableNotificationRendering ( )
 					tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.hour.split('_')[0]  + ":" + in_min + " " + in_am_pm));
 					
 					tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.pickupLocation));
+					
+					tableBody.append($("<td class = 'slot-viewer-table-data'/>").text(this.dropOffLocation));
 					
 					tableBody.append( $('<span class = "mif-cross slot-viewer-table-data clickable" />')
 							 .click(function() {

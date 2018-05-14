@@ -34,8 +34,10 @@
 				$dayOfMonth = $_GET['DAY_OF_MONTH'];
 				$month = $_GET['MONTH'];
 				$studentEmail = $_GET['STUDENT_EMAIL'];
+				$studentName = $_GET['STUDENT_NAME'];
 				$hour = $_GET['HOUR'];
 				$pickupLocation = $_GET['PICKUP_LOCATION'];
+				$dropOffLocation = $_GET['DROPOFF_LOCATION'];
 				
 				
 				////////////////////////////////////////////////////////////////////////////////////////////////
@@ -43,7 +45,7 @@
 				////////////////////////////////////////////////////////////////////////////////////////////////		
 				//create new user
 					//generate user
-					$sql = "insert into notifications(AdminEmail, DayOfWeek, DayOfMonth, Month, StudentEmail, Hour, IsMarkedRead, PickupLocation) values ('$adminEmail', '$dayOfWeek', '$dayOfMonth', '$month', '$studentEmail', '$hour', '', '$pickupLocation')";
+					$sql = "insert into notifications(AdminEmail, DayOfWeek, DayOfMonth, Month, StudentEmail, Hour, IsMarkedRead, PickupLocation, DropOffLocation, StudentName) values ('$adminEmail', '$dayOfWeek', '$dayOfMonth', '$month', '$studentEmail', '$hour', '', '$pickupLocation', '$dropOffLocation', '$studentName')";
 						
 					$query = $connection->prepare($sql);
 					

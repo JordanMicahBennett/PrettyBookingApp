@@ -32,8 +32,10 @@
 			"dayOfWeek" => $row['DayOfWeek'],
 			"hour" => $row['Hour'],
 			"studentEmail" => $row['StudentEmail'],
+			"studentName" => $row['StudentName'],
 			"isMarkedRead" => $row['IsMarkedRead'],
-			"pickupLocation" => $row['PickupLocation']
+			"pickupLocation" => $row['PickupLocation'],
+			"dropOffLocation" => $row['DropOffLocation']
 			);
 		}
 		header('Content-Type: application/json');

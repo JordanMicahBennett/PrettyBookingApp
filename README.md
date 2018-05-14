@@ -46,7 +46,7 @@ with an upper coloured portion with huge title, and a lower portion with fields 
 
 # RUNNING THE APP (OFFLINE)
 
-You'll have to ensure that all php files in "data/phps/" are updated with the appropriate connection details for your oline server.
+You'll have to ensure that all php files in "[data/phps/](https://bitbucket.org/JordanMicahBennett/bookingapp/src/master/data/phps/)" are updated with the appropriate connection details for your online server.
 
 
 AUTHOR PORTFOLIO

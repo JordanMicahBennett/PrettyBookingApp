@@ -30,7 +30,7 @@ $(document).ready
 				var newStudentRepeatPassword = document.getElementById ( 'StudentRepeatPassword' ).value;
 				var newStudentPhone = document.getElementById ( 'StudentPhone' ).value;
 				
-				enableNewStudentEntry ( newStudentName, newStudentEmail, newStudentPassword, newStudentPhone );
+				enableNewStudentEntry_ ( newStudentName, newStudentEmail, newStudentPassword, newStudentPhone );
 			}
 		);
 		
@@ -63,7 +63,7 @@ function _enableUserLogin_adminValidation ( userEmail, userPassword )
 	
 	var signInQueryString = userSignInEmailQuery + userSignInPasswordQuery;
 	
-	event.preventDefault ( );
+	//event.preventDefault ( );
 
 		$.ajax(
 		{
@@ -135,7 +135,7 @@ function _enableUserLogin_studentValidation ( userEmail, userPassword )
 	
 	var signInQueryString = userSignInEmailQuery + userSignInPasswordQuery;
 	
-	event.preventDefault ( );
+	//event.preventDefault ( );
 
 		$.ajax(
 		{
@@ -159,18 +159,16 @@ function _enableUserLogin_studentValidation ( userEmail, userPassword )
 		});	
 }
 
-function enableNewStudentEntry ( newStudentName, newStudentEmail, newStudentPassword, newStudentPhone )
+function enableNewStudentEntry_ ( newStudentName, newStudentEmail, newStudentPassword, newStudentPhone )
 {
-	event.preventDefault ( );
-	
+	//event.preventDefault ( );
+
 	$.ajax
 	(
 		{
 			type: 'POST',
 							
 			url: 'data/phps/_php.new.student.entry.php?NEW_STUDENT_NAME=' + newStudentName + '&NEW_STUDENT_EMAIL=' + newStudentEmail + '&NEW_STUDENT_PASSWORD=' + newStudentPassword + '&NEW_STUDENT_PHONE=' + newStudentPhone, 
-
-			data : null,
 			
 			processData : false,
 			
@@ -180,12 +178,11 @@ function enableNewStudentEntry ( newStudentName, newStudentEmail, newStudentPass
 			
 			success: function ( data ) 
 			{
-				console.log(data);
-				window.open ("scheduler_student.html"+ "?STUDENT_NAME=" + newStudentName + "&STUDENT_ID=" + newStudentEmail,'_self',false);
+				window.location="scheduler_student.html?STUDENT_NAME=" + newStudentName + "&STUDENT_ID=" + newStudentEmail;
 			},
 			error: function (data)
 			{
-				console.log(data);
+				console.log(data );
 			}
 		}
 	);
