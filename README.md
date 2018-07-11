@@ -39,8 +39,7 @@ See the "[Admin Manual](https://bitbucket.org/JordanMicahBennett/bookingapp/src/
 
 ## DESIGN DISCUSSION
 
-The design features a layout I call the "calendar look and feel" where all content sections (the areas you see when you click tabs) are shaped like calendars;
-with an upper coloured portion with huge title, and a lower portion with fields and or other user input controls etc.
+The design features a layout I call "DupletMaterial design", which is typically expressed as a side bar, together with a central area for each side bar item, complete with a pair or duplet of components; including a large header, and a body with controls.
 
 ![alt text]( https://bytebucket.org/JordanMicahBennett/bookingapp/raw/34723375a512947ca4af9c3c40d811f62858c096/data/miscallaneous/screenshot-1.png)
 
