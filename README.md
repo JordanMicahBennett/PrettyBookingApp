@@ -41,7 +41,7 @@ See the "[Admin Manual](https://github.com/JordanMicahBennett/PrettyBookingApp/b
 
 The design features a layout I call "DupletMaterial design", which is typically expressed as a side bar, together with a central area accessed when each side bar item is toggled, complete with a pair or duplet of components; including a large header, and a body with controls.
 
-![alt text]( https://bytebucket.org/JordanMicahBennett/bookingapp/raw/34723375a512947ca4af9c3c40d811f62858c096/data/miscallaneous/screenshot-1.png)
+![alt text]( https://github.com/JordanMicahBennett/PrettyBookingApp/blob/master/data/images/screenshot.png)
 
 # RUNNING THE APP (OFFLINE)
 
