@@ -18,7 +18,7 @@ d. Principal side (similar to admin, can book appointments, add users and a lot 
 
 # RUNNING THE APP 
 
-Booking app is live at [bookjaa.rf.gd](https://bookjaa.rf.gd/). (Note this is on a free server!)
+Booking app is live at [bookjaa.rf.gd](https://bookjaa.rf.gd/). (Note this is on a free server! You may need to click "proceed to website" to visit the website.)
 
 # RUNNING THE APP/Valid Logins:
 
