@@ -35,7 +35,7 @@ A driver user (username: howardlewis@jaa.com, password: Jaadriving@1)
 
 ## USER MANUAL
 
-See the "[Admin Manual](https://bitbucket.org/JordanMicahBennett/bookingapp/src/21513956b8f2add30ad7f2f5ad9300d08521cbb6/Admin%20%20Manual.pdf)" section for details.
+See the "[Admin Manual](https://github.com/JordanMicahBennett/PrettyBookingApp/blob/master/userManual.pdf)" section for details.
 
 ## DESIGN DISCUSSION
 
@@ -45,7 +45,7 @@ The design features a layout I call "DupletMaterial design", which is typically 
 
 # RUNNING THE APP (OFFLINE)
 
-You'll have to ensure that all php files in "[data/phps/](https://bitbucket.org/JordanMicahBennett/bookingapp/src/master/data/phps/)" are updated with the appropriate connection details for your online server.
+You'll have to ensure that all php files in "[data/phps/](https://github.com/JordanMicahBennett/PrettyBookingApp/tree/master/data/phps)" are updated with the appropriate connection details for your online server.
 
 
 AUTHOR PORTFOLIO
